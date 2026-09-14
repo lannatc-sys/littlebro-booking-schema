@@ -59,6 +59,7 @@ function menuVerifySetup() { return _App.menuVerifySetup(); }
 function menuCleanup() { return _App.menuCleanup(); }
 function menuSyncOta() { return _App.menuSyncOta(); }
 function menuCheckOtaUrls() { return _App.menuCheckOtaUrls(); }
+function apiDispatch(jsonString) { return _App.apiDispatch(jsonString); }
 `
     }
   });

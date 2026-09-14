@@ -448,6 +448,14 @@ export function doGet(e: any) {
   return dispatchGet(e, APP_VERSION);
 }
 
+export function apiDispatch(jsonString: string) {
+  const output = doPost({ postData: { contents: jsonString } });
+  if (output && typeof output.getContent === 'function') {
+    return output.getContent();
+  }
+  return JSON.stringify(output);
+}
+
 export function syncOtaCalendars() {
   importOtaCalendars();
 }
