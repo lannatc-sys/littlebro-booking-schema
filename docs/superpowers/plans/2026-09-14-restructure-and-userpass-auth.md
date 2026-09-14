@@ -1,20 +1,21 @@
-# Modular TypeScript Restructure & Username/Password Authentication Implementation Plan
+# Modular TypeScript Restructure, Router & Username/Password Authentication Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Restructure the monolithic 4,119-line `get.gs` file into clean, modular TypeScript files under `src/`, implement username+password admin authentication, and configure esbuild bundling and Vitest unit testing.
+**Goal:** Restructure the monolithic 4,119-line `get.gs` file into clean, modular TypeScript files under `src/`, add dedicated GET & POST Routers (`src/router/`), implement username+password admin authentication, create responsive web views for booking and admin (`src/views/`), and configure esbuild bundling and Vitest unit testing.
 
-**Architecture:** Clean Architecture separating pure business logic (`src/core/`) from Google Apps Script infrastructure adapters (`src/adapters/`). The entry points and web routing reside in `src/main.ts`, which compiles via esbuild into a unified Google Apps Script `get.gs` file.
+**Architecture:** Clean Architecture separating pure business logic (`src/core/`), Google Apps Script infrastructure adapters (`src/adapters/`), dedicated request dispatchers (`src/router/`), and responsive web views (`src/views/`).
 
-**Tech Stack:** TypeScript, Node.js, esbuild, Vitest, Google Apps Script.
+**Tech Stack:** TypeScript, Node.js, esbuild, Vitest, Google Apps Script, HTML5/CSS3.
 
 **Spec:** `docs/superpowers/specs/2026-09-14-restructure-and-userpass-auth-design.md`
 
 ## Global Constraints
 - Do not break existing booking, quotation, payment, or iCal synchronization logic.
 - Admin authentication must support username and password in `admin_users` sheet (with both SHA-256 and plain text support).
+- Router must cleanly handle both Web App HTML page rendering and JSON API requests.
 - Build output `get.gs` must expose top-level global functions required by Google Apps Script (`doGet`, `doPost`, `onOpen`, `testOtaUrls`).
-- Core business logic in `src/core/` must remain pure TypeScript with zero Google Apps Script API calls (`SpreadsheetApp`, `UrlFetchApp`, `CacheService`).
+- Core business logic in `src/core/` must remain pure TypeScript with zero Google Apps Script API calls.
 
 ---
 
@@ -36,13 +37,13 @@ Create `package.json` with scripts:
 and devDependencies: `esbuild`, `vitest`, `typescript`, `@types/node`.
 
 - [ ] **Step 2: Create tsconfig.json**
-Configure TypeScript with `"target": "ES2022"`, `"module": "ESNext"`, `"moduleResolution": "node"`, `"strict": false` (to match existing code pragmatism while allowing type safety), `"outDir": "dist"`.
+Configure TypeScript with `"target": "ES2022"`, `"module": "ESNext"`, `"moduleResolution": "node"`, `"strict": false`, `"outDir": "dist"`.
 
 - [ ] **Step 3: Create vitest.config.ts**
 Configure Vitest for running `.test.ts` files under `tests/`.
 
 - [ ] **Step 4: Create build.js esbuild script**
-Write `build.js` that bundles `src/main.ts` into `get.gs` using esbuild with `bundle: true`, `format: "iife"`, `globalName: "App"`, and a banner assigning top-level functions (`doGet`, `doPost`, `onOpen`, `testOtaUrls`) to the global scope.
+Write `build.js` that bundles `src/main.ts` into `get.gs` using esbuild with `bundle: true`, `format: "iife"`, `globalName: "App"`, and preserves top-level functions (`doGet`, `doPost`, `onOpen`, `testOtaUrls`).
 
 - [ ] **Step 5: Run npm install**
 Run `npm install` to install dependencies and verify toolchain.
@@ -177,28 +178,74 @@ Commit adapter modules to git.
 
 ---
 
-### Task 6: Assemble `src/main.ts` & Build `get.gs`
+### Task 6: Implement Dedicated Router Modules
+
+**Files:**
+- Create: `src/router/getRouter.ts`
+- Create: `src/router/postRouter.ts`
+- Test: `tests/postRouter.test.ts`
+
+**Interfaces:**
+- Consumes: Action handlers from `src/adapters/` and `src/core/`
+- Produces: `dispatchGet(e)`, `dispatchPost(e)`
+
+- [ ] **Step 1: Implement `src/router/getRouter.ts`**
+Handle page routing (`page=admin` -> admin HTML, default -> index HTML) and API routing (`action=health`, `action=ical`).
+
+- [ ] **Step 2: Implement `src/router/postRouter.ts`**
+Structure action routing table separating Public actions, Auth actions (`adminLogin`, `adminLogout`), and Admin-guarded actions with automatic `requireAdmin` enforcement.
+
+- [ ] **Step 3: Write tests for `postRouter.ts` action dispatching**
+Verify routing logic correctly routes to public handlers and rejects unauthorized admin actions.
+
+- [ ] **Step 4: Commit**
+Commit router modules and tests to git.
+
+---
+
+### Task 7: Create Responsive Web Views (HTML)
+
+**Files:**
+- Create: `src/views/index.html` (Customer Booking UI)
+- Create: `src/views/admin.html` (Admin Dashboard & Login UI)
+
+**Interfaces:**
+- Consumes: Apps Script `doPost` API endpoints
+- Produces: Complete responsive user interface for booking and administration
+
+- [ ] **Step 1: Create `src/views/index.html`**
+Modern responsive booking page with room cards, date picker, real-time quote preview, guest contact form, PromptPay QR modal, and slip upload.
+
+- [ ] **Step 2: Create `src/views/admin.html`**
+Modern admin interface with Username+Password login modal, booking management table, payment slip viewer, confirm/cancel buttons, and calendar date blocker.
+
+- [ ] **Step 3: Commit**
+Commit HTML views to git.
+
+---
+
+### Task 8: Assemble `src/main.ts`, Build System & Final Verification
 
 **Files:**
 - Create: `src/main.ts`
-- Modify: `build.js`
+- Update: `build.js`
 - Generate: `get.gs`
 
 **Interfaces:**
-- Consumes: All modules from `src/core/` and `src/adapters/`
+- Consumes: All modules from `src/core/`, `src/adapters/`, `src/router/`, `src/views/`
 - Produces: Production-ready `get.gs` with `doGet`, `doPost`, `onOpen`, `testOtaUrls` at top-level.
 
-- [ ] **Step 1: Wire all routers and entry points into `src/main.ts`**
-Export `doGet`, `doPost`, `onOpen`, and other global trigger handlers. Update `doPost` action `"adminLogin"` to invoke the new username/password login handler.
+- [ ] **Step 1: Wire `doGet` and `doPost` to Router in `src/main.ts`**
+Expose `doGet(e)` calling `dispatchGet(e)`, `doPost(e)` calling `dispatchPost(e)`, and menu actions.
 
-- [ ] **Step 2: Run build**
-Run `npm run build` to generate `get.gs`.
+- [ ] **Step 2: Update `build.js`**
+Build script bundles TypeScript and prepares views for Google Apps Script HTML service.
 
-- [ ] **Step 3: Verify syntax of `get.gs`**
-Run `node -c get.gs` to confirm valid JavaScript syntax.
+- [ ] **Step 3: Run build & verify syntax**
+Run `npm run build` and `node -c get.gs`.
 
-- [ ] **Step 4: Run full test suite**
-Run `npm test` to verify 100% of unit tests pass.
+- [ ] **Step 4: Run complete Vitest suite**
+Run `npm test` ensuring 100% test pass rate.
 
 - [ ] **Step 5: Commit**
-Commit complete restructured source, build script, and generated `get.gs` to git.
+Commit final build and deliver to user.
