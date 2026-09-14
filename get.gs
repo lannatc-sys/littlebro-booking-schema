@@ -664,859 +664,859 @@ var _App = (() => {
   }
 
   // html-raw:D:\system make\little bro booking\src\views\index.html
-  var views_default = `<!DOCTYPE html>
-<html lang="th">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Little Bro Mae Hong Son - \u0E08\u0E2D\u0E07\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01\u0E2D\u0E2D\u0E19\u0E44\u0E25\u0E19\u0E4C</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #10b981;
-      --primary-hover: #059669;
-      --primary-light: #d1fae5;
-      --dark: #0f172a;
-      --surface: #ffffff;
-      --surface-subtle: #f8fafc;
-      --border: #e2e8f0;
-      --text: #1e293b;
-      --text-muted: #64748b;
-      --radius: 16px;
-      --radius-sm: 8px;
-      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Prompt', sans-serif; }
-    body { background-color: #f1f5f9; color: var(--text); line-height: 1.6; min-height: 100vh; }
-    
-    .navbar {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(12px);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .brand { font-size: 1.35rem; font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 0.5rem; }
-    .brand span { color: var(--primary); }
-    .nav-actions a {
-      text-decoration: none;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-      border-radius: var(--radius-sm);
-      transition: all 0.2s;
-    }
-    .nav-actions a:hover { color: var(--primary); background: var(--primary-light); }
-
-    .hero {
-      background: linear-gradient(135deg, #064e3b 0%, #0f172a 100%);
-      color: white;
-      padding: 4rem 2rem 5rem;
-      text-align: center;
-      position: relative;
-    }
-    .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.5px; }
-    .hero p { font-size: 1.15rem; color: #cbd5e1; max-width: 600px; margin: 0 auto; font-weight: 300; }
-
-    .container { max-width: 1100px; margin: -3rem auto 4rem; padding: 0 1.5rem; position: relative; z-index: 10; }
-
-    .card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--border);
-      padding: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 1.5rem;
-    }
-    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-    .form-group label { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
-    .form-control {
-      padding: 0.75rem 1rem;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      background: var(--surface-subtle);
-    }
-    .form-control:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
-      background: var(--surface);
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.85rem 1.75rem;
-      border-radius: var(--radius-sm);
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      transition: all 0.2s;
-    }
-    .btn-primary { background: var(--primary); color: white; }
-    .btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); }
-    .btn-block { width: 100%; }
-
-    .rooms-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
-    }
-    .room-card {
-      border: 2px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      background: var(--surface);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .room-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: var(--shadow); }
-    .room-card.selected { border-color: var(--primary); background: #f0fdf4; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25); }
-    .room-name { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--dark); }
-    .room-price { font-size: 1.4rem; font-weight: 700; color: var(--primary); margin: 0.5rem 0; }
-    .room-price small { font-size: 0.85rem; font-weight: 400; color: var(--text-muted); }
-
-    .summary-box {
-      background: var(--surface-subtle);
-      border-radius: var(--radius-sm);
-      padding: 1.5rem;
-      margin-top: 1.5rem;
-      border: 1px solid var(--border);
-    }
-    .summary-row { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.95rem; }
-    .summary-row.total { font-size: 1.3rem; font-weight: 700; color: var(--primary); border-top: 1px dashed var(--border); padding-top: 0.75rem; margin-top: 0.75rem; }
-
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
-    .modal.active { display: flex; }
-    .modal-content {
-      background: white;
-      border-radius: var(--radius);
-      padding: 2rem;
-      max-width: 480px;
-      width: 100%;
-      text-align: center;
-      box-shadow: var(--shadow-lg);
-    }
-    .qr-img { width: 220px; height: 220px; margin: 1rem auto; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0.5rem; }
-  </style>
-</head>
-<body>
-
-  <nav class="navbar">
-    <div class="brand">
-      \u{1F3E1} <span>Little Bro</span> Booking
-    </div>
-    <div class="nav-actions">
-      <a href="?page=admin" id="nav-admin-link">\u{1F510} \u0E1C\u0E39\u0E49\u0E14\u0E39\u0E41\u0E25\u0E23\u0E30\u0E1A\u0E1A</a>
-    </div>
-  </nav>
-
-  <header class="hero">
-    <h1>\u0E1E\u0E31\u0E01\u0E1C\u0E48\u0E2D\u0E19\u0E17\u0E48\u0E32\u0E21\u0E01\u0E25\u0E32\u0E07\u0E2A\u0E32\u0E22\u0E2B\u0E21\u0E2D\u0E01</h1>
-    <p>\u0E2A\u0E31\u0E21\u0E1C\u0E31\u0E2A\u0E2D\u0E32\u0E01\u0E32\u0E28\u0E1A\u0E23\u0E34\u0E2A\u0E38\u0E17\u0E18\u0E34\u0E4C\u0E41\u0E25\u0E30\u0E27\u0E34\u0E16\u0E35\u0E0A\u0E38\u0E21\u0E0A\u0E19\u0E17\u0E35\u0E48\u0E41\u0E21\u0E48\u0E2E\u0E48\u0E2D\u0E07\u0E2A\u0E2D\u0E19 \u0E08\u0E2D\u0E07\u0E15\u0E23\u0E07\u0E23\u0E32\u0E04\u0E32\u0E14\u0E35\u0E17\u0E35\u0E48\u0E2A\u0E38\u0E14\u0E1E\u0E23\u0E49\u0E2D\u0E21\u0E23\u0E31\u0E1A\u0E01\u0E32\u0E23\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E17\u0E31\u0E19\u0E17\u0E35</p>
-  </header>
-
-  <main class="container">
-    <!-- Step 1: Search & Date Selection -->
-    <section class="card" id="search-section">
-      <h2 style="margin-bottom: 1.25rem;">\u{1F50D} 1. \u0E40\u0E25\u0E37\u0E2D\u0E01\u0E27\u0E31\u0E19\u0E17\u0E35\u0E48\u0E40\u0E02\u0E49\u0E32\u0E1E\u0E31\u0E01</h2>
-      <div class="form-grid">
-        <div class="form-group">
-          <label for="check-in-date">\u0E27\u0E31\u0E19\u0E40\u0E0A\u0E47\u0E04\u0E2D\u0E34\u0E19 (Check-in)</label>
-          <input type="date" id="check-in-date" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="check-out-date">\u0E27\u0E31\u0E19\u0E40\u0E0A\u0E47\u0E04\u0E40\u0E2D\u0E32\u0E15\u0E4C (Check-out)</label>
-          <input type="date" id="check-out-date" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="guest-count">\u0E08\u0E33\u0E19\u0E27\u0E19\u0E1C\u0E39\u0E49\u0E40\u0E02\u0E49\u0E32\u0E1E\u0E31\u0E01</label>
-          <select id="guest-count" class="form-control">
-            <option value="1">1 \u0E17\u0E48\u0E32\u0E19</option>
-            <option value="2" selected>2 \u0E17\u0E48\u0E32\u0E19</option>
-            <option value="3">3 \u0E17\u0E48\u0E32\u0E19</option>
-            <option value="4">4 \u0E17\u0E48\u0E32\u0E19</option>
-          </select>
-        </div>
-      </div>
-      <button type="button" id="btn-check-availability" class="btn btn-primary btn-block">
-        \u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E2B\u0E49\u0E2D\u0E07\u0E27\u0E48\u0E32\u0E07\u0E41\u0E25\u0E30\u0E23\u0E32\u0E04\u0E32
-      </button>
-    </section>
-
-    <!-- Step 2: Room Selection -->
-    <section class="card" id="rooms-section" style="display: none;">
-      <h2>\u{1F6CF}\uFE0F 2. \u0E40\u0E25\u0E37\u0E2D\u0E01\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01</h2>
-      <div id="rooms-container" class="rooms-grid">
-        <!-- Room cards rendered dynamically -->
-      </div>
-    </section>
-
-    <!-- Step 3: Booking Form & Confirmation -->
-    <section class="card" id="booking-section" style="display: none;">
-      <h2>\u{1F4DD} 3. \u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E1C\u0E39\u0E49\u0E08\u0E2D\u0E07\u0E41\u0E25\u0E30\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19</h2>
-      <div class="form-grid">
-        <div class="form-group">
-          <label for="guest-name">\u0E0A\u0E37\u0E48\u0E2D-\u0E19\u0E32\u0E21\u0E2A\u0E01\u0E38\u0E25 *</label>
-          <input type="text" id="guest-name" class="form-control" placeholder="\u0E40\u0E0A\u0E48\u0E19 \u0E2A\u0E21\u0E0A\u0E32\u0E22 \u0E43\u0E08\u0E14\u0E35" required>
-        </div>
-        <div class="form-group">
-          <label for="guest-phone">\u0E40\u0E1A\u0E2D\u0E23\u0E4C\u0E42\u0E17\u0E23\u0E28\u0E31\u0E1E\u0E17\u0E4C\u0E15\u0E34\u0E14\u0E15\u0E48\u0E2D *</label>
-          <input type="tel" id="guest-phone" class="form-control" placeholder="08XXXXXXXX" required>
-        </div>
-        <div class="form-group">
-          <label for="guest-email">\u0E2D\u0E35\u0E40\u0E21\u0E25 (\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E23\u0E31\u0E1A\u0E43\u0E1A\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07) *</label>
-          <input type="email" id="guest-email" class="form-control" placeholder="name@example.com" required>
-        </div>
-      </div>
-
-      <div class="summary-box" id="quote-summary">
-        <div class="summary-row">
-          <span>\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01:</span>
-          <span id="summary-room-name">-</span>
-        </div>
-        <div class="summary-row">
-          <span>\u0E23\u0E30\u0E22\u0E30\u0E40\u0E27\u0E25\u0E32:</span>
-          <span id="summary-nights">-</span>
-        </div>
-        <div class="summary-row total">
-          <span>\u0E22\u0E2D\u0E14\u0E23\u0E27\u0E21\u0E0A\u0E33\u0E23\u0E30:</span>
-          <span id="summary-total-price">0 \u0E1A\u0E32\u0E17</span>
-        </div>
-      </div>
-
-      <button type="button" id="btn-submit-booking" class="btn btn-primary btn-block" style="margin-top: 1.5rem;">
-        \u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07\u0E41\u0E25\u0E30\u0E14\u0E33\u0E40\u0E19\u0E34\u0E19\u0E01\u0E32\u0E23\u0E0A\u0E33\u0E23\u0E30\u0E40\u0E07\u0E34\u0E19
-      </button>
-    </section>
-  </main>
-
-  <!-- Payment Modal -->
-  <div class="modal" id="payment-modal">
-    <div class="modal-content">
-      <h3>\u0E0A\u0E33\u0E23\u0E30\u0E40\u0E07\u0E34\u0E19\u0E1C\u0E48\u0E32\u0E19 PromptPay</h3>
-      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">
-        \u0E2A\u0E41\u0E01\u0E19 QR Code \u0E14\u0E49\u0E32\u0E19\u0E25\u0E48\u0E32\u0E07\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E0A\u0E33\u0E23\u0E30\u0E40\u0E07\u0E34\u0E19\u0E21\u0E31\u0E14\u0E08\u0E33
-      </p>
-      <img id="qr-image" class="qr-img" src="" alt="PromptPay QR Code">
-      <div style="font-size: 1.4rem; font-weight: 700; color: var(--primary);" id="modal-amount">0.00 THB</div>
-      <p style="font-size: 0.85rem; color: #dc2626; margin: 0.5rem 0;" id="qr-expiry-text">\u0E01\u0E23\u0E38\u0E13\u0E32\u0E0A\u0E33\u0E23\u0E30\u0E20\u0E32\u0E22\u0E43\u0E19 15 \u0E19\u0E32\u0E17\u0E35</p>
-      
-      <div style="margin-top: 1rem; text-align: left;">
-        <label style="font-size: 0.85rem; font-weight: 600;">\u0E41\u0E19\u0E1A\u0E2A\u0E25\u0E34\u0E1B\u0E01\u0E32\u0E23\u0E42\u0E2D\u0E19\u0E40\u0E07\u0E34\u0E19 (Slip):</label>
-        <input type="file" id="slip-file" accept="image/*" class="form-control" style="margin-top: 0.4rem;">
-      </div>
-
-      <button type="button" id="btn-upload-slip" class="btn btn-primary btn-block" style="margin-top: 1rem;">
-        \u0E2D\u0E31\u0E1B\u0E42\u0E2B\u0E25\u0E14\u0E2A\u0E25\u0E34\u0E1B\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19
-      </button>
-    </div>
-  </div>
-
-  <script>
-    let selectedRoomId = null;
-    let currentBookingCode = null;
-
-    // Set default dates: today + 1 and today + 2
-    const today = new Date();
-    const tomorrow = new Date(today); tomorrow.setDate(tomorrow.getDate() + 1);
-    const dayAfter = new Date(today); dayAfter.setDate(dayAfter.getDate() + 2);
-
-    const fmt = (d) => d.toISOString().split('T')[0];
-    document.getElementById('check-in-date').value = fmt(tomorrow);
-    document.getElementById('check-out-date').value = fmt(dayAfter);
-
-    async function apiCall(action, payload = {}) {
-      const res = await fetch('', {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify({ action, ...payload })
-      });
-      return await res.json();
-    }
-
-    document.getElementById('btn-check-availability').addEventListener('click', async () => {
-      const checkIn = document.getElementById('check-in-date').value;
-      const checkOut = document.getElementById('check-out-date').value;
-
-      if (!checkIn || !checkOut || checkIn >= checkOut) {
-        alert('\u0E01\u0E23\u0E38\u0E13\u0E32\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E27\u0E31\u0E19\u0E40\u0E0A\u0E47\u0E04\u0E2D\u0E34\u0E19\u0E41\u0E25\u0E30\u0E40\u0E0A\u0E47\u0E04\u0E40\u0E2D\u0E32\u0E15\u0E4C\u0E43\u0E2B\u0E49\u0E16\u0E39\u0E01\u0E15\u0E49\u0E2D\u0E07');
-        return;
-      }
-
-      const btn = document.getElementById('btn-check-availability');
-      btn.innerText = '\u0E01\u0E33\u0E25\u0E31\u0E07\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E2B\u0E49\u0E2D\u0E07\u0E27\u0E48\u0E32\u0E07...';
-      btn.disabled = true;
-
-      try {
-        const catalogRes = await apiCall('getCatalog');
-        if (catalogRes.ok) {
-          renderRooms(catalogRes.data.rooms || []);
-          document.getElementById('rooms-section').style.display = 'block';
-          document.getElementById('rooms-section').scrollIntoView({ behavior: 'smooth' });
-        } else {
-          alert('\u0E44\u0E21\u0E48\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E14\u0E36\u0E07\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01\u0E44\u0E14\u0E49: ' + (catalogRes.error?.message || ''));
-        }
-      } catch (err) {
-        alert('\u0E40\u0E01\u0E34\u0E14\u0E02\u0E49\u0E2D\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14\u0E43\u0E19\u0E01\u0E32\u0E23\u0E40\u0E0A\u0E37\u0E48\u0E2D\u0E21\u0E15\u0E48\u0E2D');
-      } finally {
-        btn.innerText = '\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E2B\u0E49\u0E2D\u0E07\u0E27\u0E48\u0E32\u0E07\u0E41\u0E25\u0E30\u0E23\u0E32\u0E04\u0E32';
-        btn.disabled = false;
-      }
-    });
-
-    function renderRooms(rooms) {
-      const container = document.getElementById('rooms-container');
-      container.innerHTML = '';
-
-      rooms.forEach((room) => {
-        const card = document.createElement('div');
-        card.className = 'room-card';
-        card.id = \`room-\${room.id}\`;
-        card.innerHTML = \`
-          <div>
-            <div class="room-name">\${room.name_th || room.name_en || room.id}</div>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">\u0E23\u0E2D\u0E07\u0E23\u0E31\u0E1A\u0E1C\u0E39\u0E49\u0E40\u0E02\u0E49\u0E32\u0E1E\u0E31\u0E01 \${room.max_guests || 2} \u0E17\u0E48\u0E32\u0E19</p>
-          </div>
-          <div class="room-price">
-            \u0E3F\${(room.base_price || 0).toLocaleString()} <small>/ \u0E04\u0E37\u0E19</small>
-          </div>
-        \`;
-        card.addEventListener('click', () => selectRoom(room));
-        container.appendChild(card);
-      });
-    }
-
-    async function selectRoom(room) {
-      selectedRoomId = room.id;
-      document.querySelectorAll('.room-card').forEach(c => c.classList.remove('selected'));
-      document.getElementById(\`room-\${room.id}\`)?.classList.add('selected');
-
-      const checkIn = document.getElementById('check-in-date').value;
-      const checkOut = document.getElementById('check-out-date').value;
-      const guests = Number(document.getElementById('guest-count').value);
-
-      const quoteRes = await apiCall('quote', { roomId: room.id, checkIn, checkOut, guests });
-      if (quoteRes.ok) {
-        document.getElementById('summary-room-name').innerText = room.name_th || room.id;
-        document.getElementById('summary-nights').innerText = \`\${checkIn} \u0E16\u0E36\u0E07 \${checkOut} (\${quoteRes.data.nights} \u0E04\u0E37\u0E19)\`;
-        document.getElementById('summary-total-price').innerText = \`\u0E3F\${quoteRes.data.total_price.toLocaleString()}\`;
-
-        document.getElementById('booking-section').style.display = 'block';
-        document.getElementById('booking-section').scrollIntoView({ behavior: 'smooth' });
-      } else {
-        alert('\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01\u0E44\u0E21\u0E48\u0E27\u0E48\u0E32\u0E07\u0E43\u0E19\u0E27\u0E31\u0E19\u0E17\u0E35\u0E48\u0E40\u0E25\u0E37\u0E2D\u0E01 \u0E2B\u0E23\u0E37\u0E2D\u0E40\u0E01\u0E34\u0E14\u0E02\u0E49\u0E2D\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14');
-      }
-    }
-
-    document.getElementById('btn-submit-booking').addEventListener('click', async () => {
-      const name = document.getElementById('guest-name').value.trim();
-      const phone = document.getElementById('guest-phone').value.trim();
-      const email = document.getElementById('guest-email').value.trim();
-
-      if (!name || !phone || !email) {
-        alert('\u0E01\u0E23\u0E38\u0E13\u0E32\u0E01\u0E23\u0E2D\u0E01\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E1C\u0E39\u0E49\u0E08\u0E2D\u0E07\u0E43\u0E2B\u0E49\u0E04\u0E23\u0E1A\u0E16\u0E49\u0E27\u0E19');
-        return;
-      }
-
-      const payload = {
-        roomId: selectedRoomId,
-        checkIn: document.getElementById('check-in-date').value,
-        checkOut: document.getElementById('check-out-date').value,
-        guests: Number(document.getElementById('guest-count').value),
-        guest: { name, phone, email }
-      };
-
-      const res = await apiCall('createBooking', payload);
-      if (res.ok) {
-        currentBookingCode = res.data.booking_code;
-        showPaymentModal(res.data);
-      } else {
-        alert('\u0E44\u0E21\u0E48\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07\u0E44\u0E14\u0E49: ' + (res.error?.message || '\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01\u0E2D\u0E32\u0E08\u0E16\u0E39\u0E01\u0E08\u0E2D\u0E07\u0E41\u0E25\u0E49\u0E27'));
-      }
-    });
-
-    function showPaymentModal(data) {
-      const modal = document.getElementById('payment-modal');
-      document.getElementById('modal-amount').innerText = \`\u0E3F\${(data.amount_to_pay || data.total_price || 0).toLocaleString()}\`;
-      if (data.qr_image_url) {
-        document.getElementById('qr-image').src = data.qr_image_url;
-      }
-      modal.classList.add('active');
-    }
-  <\/script>
-</body>
-</html>
+  var views_default = `<!DOCTYPE html>\r
+<html lang="th">\r
+<head>\r
+  <meta charset="UTF-8">\r
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">\r
+  <title>Little Bro Mae Hong Son - \u0E08\u0E2D\u0E07\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01\u0E2D\u0E2D\u0E19\u0E44\u0E25\u0E19\u0E4C</title>\r
+  <link rel="preconnect" href="https://fonts.googleapis.com">\r
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\r
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">\r
+  <style>\r
+    :root {\r
+      --primary: #10b981;\r
+      --primary-hover: #059669;\r
+      --primary-light: #d1fae5;\r
+      --dark: #0f172a;\r
+      --surface: #ffffff;\r
+      --surface-subtle: #f8fafc;\r
+      --border: #e2e8f0;\r
+      --text: #1e293b;\r
+      --text-muted: #64748b;\r
+      --radius: 16px;\r
+      --radius-sm: 8px;\r
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);\r
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);\r
+    }\r
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Prompt', sans-serif; }\r
+    body { background-color: #f1f5f9; color: var(--text); line-height: 1.6; min-height: 100vh; }\r
+    \r
+    .navbar {\r
+      background: rgba(255, 255, 255, 0.9);\r
+      backdrop-filter: blur(12px);\r
+      position: sticky;\r
+      top: 0;\r
+      z-index: 50;\r
+      border-bottom: 1px solid var(--border);\r
+      padding: 1rem 2rem;\r
+      display: flex;\r
+      justify-content: space-between;\r
+      align-items: center;\r
+    }\r
+    .brand { font-size: 1.35rem; font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 0.5rem; }\r
+    .brand span { color: var(--primary); }\r
+    .nav-actions a {\r
+      text-decoration: none;\r
+      color: var(--text-muted);\r
+      font-size: 0.9rem;\r
+      font-weight: 500;\r
+      padding: 0.5rem 1rem;\r
+      border-radius: var(--radius-sm);\r
+      transition: all 0.2s;\r
+    }\r
+    .nav-actions a:hover { color: var(--primary); background: var(--primary-light); }\r
+\r
+    .hero {\r
+      background: linear-gradient(135deg, #064e3b 0%, #0f172a 100%);\r
+      color: white;\r
+      padding: 4rem 2rem 5rem;\r
+      text-align: center;\r
+      position: relative;\r
+    }\r
+    .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.5px; }\r
+    .hero p { font-size: 1.15rem; color: #cbd5e1; max-width: 600px; margin: 0 auto; font-weight: 300; }\r
+\r
+    .container { max-width: 1100px; margin: -3rem auto 4rem; padding: 0 1.5rem; position: relative; z-index: 10; }\r
+\r
+    .card {\r
+      background: var(--surface);\r
+      border-radius: var(--radius);\r
+      box-shadow: var(--shadow-lg);\r
+      border: 1px solid var(--border);\r
+      padding: 2rem;\r
+      margin-bottom: 2rem;\r
+    }\r
+\r
+    .form-grid {\r
+      display: grid;\r
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));\r
+      gap: 1.25rem;\r
+      margin-bottom: 1.5rem;\r
+    }\r
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }\r
+    .form-group label { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }\r
+    .form-control {\r
+      padding: 0.75rem 1rem;\r
+      border-radius: var(--radius-sm);\r
+      border: 1px solid var(--border);\r
+      font-size: 0.95rem;\r
+      outline: none;\r
+      transition: border-color 0.2s, box-shadow 0.2s;\r
+      background: var(--surface-subtle);\r
+    }\r
+    .form-control:focus {\r
+      border-color: var(--primary);\r
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);\r
+      background: var(--surface);\r
+    }\r
+\r
+    .btn {\r
+      display: inline-flex;\r
+      align-items: center;\r
+      justify-content: center;\r
+      gap: 0.5rem;\r
+      padding: 0.85rem 1.75rem;\r
+      border-radius: var(--radius-sm);\r
+      font-size: 1rem;\r
+      font-weight: 600;\r
+      cursor: pointer;\r
+      border: none;\r
+      transition: all 0.2s;\r
+    }\r
+    .btn-primary { background: var(--primary); color: white; }\r
+    .btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); }\r
+    .btn-block { width: 100%; }\r
+\r
+    .rooms-grid {\r
+      display: grid;\r
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));\r
+      gap: 1.5rem;\r
+      margin-top: 1.5rem;\r
+    }\r
+    .room-card {\r
+      border: 2px solid var(--border);\r
+      border-radius: var(--radius);\r
+      padding: 1.5rem;\r
+      cursor: pointer;\r
+      transition: all 0.2s ease;\r
+      background: var(--surface);\r
+      display: flex;\r
+      flex-direction: column;\r
+      justify-content: space-between;\r
+    }\r
+    .room-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: var(--shadow); }\r
+    .room-card.selected { border-color: var(--primary); background: #f0fdf4; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25); }\r
+    .room-name { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--dark); }\r
+    .room-price { font-size: 1.4rem; font-weight: 700; color: var(--primary); margin: 0.5rem 0; }\r
+    .room-price small { font-size: 0.85rem; font-weight: 400; color: var(--text-muted); }\r
+\r
+    .summary-box {\r
+      background: var(--surface-subtle);\r
+      border-radius: var(--radius-sm);\r
+      padding: 1.5rem;\r
+      margin-top: 1.5rem;\r
+      border: 1px solid var(--border);\r
+    }\r
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.95rem; }\r
+    .summary-row.total { font-size: 1.3rem; font-weight: 700; color: var(--primary); border-top: 1px dashed var(--border); padding-top: 0.75rem; margin-top: 0.75rem; }\r
+\r
+    .modal {\r
+      display: none;\r
+      position: fixed;\r
+      top: 0; left: 0; width: 100%; height: 100%;\r
+      background: rgba(0, 0, 0, 0.6);\r
+      backdrop-filter: blur(4px);\r
+      z-index: 100;\r
+      align-items: center;\r
+      justify-content: center;\r
+      padding: 1rem;\r
+    }\r
+    .modal.active { display: flex; }\r
+    .modal-content {\r
+      background: white;\r
+      border-radius: var(--radius);\r
+      padding: 2rem;\r
+      max-width: 480px;\r
+      width: 100%;\r
+      text-align: center;\r
+      box-shadow: var(--shadow-lg);\r
+    }\r
+    .qr-img { width: 220px; height: 220px; margin: 1rem auto; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0.5rem; }\r
+  </style>\r
+</head>\r
+<body>\r
+\r
+  <nav class="navbar">\r
+    <div class="brand">\r
+      \u{1F3E1} <span>Little Bro</span> Booking\r
+    </div>\r
+    <div class="nav-actions">\r
+      <a href="?page=admin" id="nav-admin-link">\u{1F510} \u0E1C\u0E39\u0E49\u0E14\u0E39\u0E41\u0E25\u0E23\u0E30\u0E1A\u0E1A</a>\r
+    </div>\r
+  </nav>\r
+\r
+  <header class="hero">\r
+    <h1>\u0E1E\u0E31\u0E01\u0E1C\u0E48\u0E2D\u0E19\u0E17\u0E48\u0E32\u0E21\u0E01\u0E25\u0E32\u0E07\u0E2A\u0E32\u0E22\u0E2B\u0E21\u0E2D\u0E01</h1>\r
+    <p>\u0E2A\u0E31\u0E21\u0E1C\u0E31\u0E2A\u0E2D\u0E32\u0E01\u0E32\u0E28\u0E1A\u0E23\u0E34\u0E2A\u0E38\u0E17\u0E18\u0E34\u0E4C\u0E41\u0E25\u0E30\u0E27\u0E34\u0E16\u0E35\u0E0A\u0E38\u0E21\u0E0A\u0E19\u0E17\u0E35\u0E48\u0E41\u0E21\u0E48\u0E2E\u0E48\u0E2D\u0E07\u0E2A\u0E2D\u0E19 \u0E08\u0E2D\u0E07\u0E15\u0E23\u0E07\u0E23\u0E32\u0E04\u0E32\u0E14\u0E35\u0E17\u0E35\u0E48\u0E2A\u0E38\u0E14\u0E1E\u0E23\u0E49\u0E2D\u0E21\u0E23\u0E31\u0E1A\u0E01\u0E32\u0E23\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E17\u0E31\u0E19\u0E17\u0E35</p>\r
+  </header>\r
+\r
+  <main class="container">\r
+    <!-- Step 1: Search & Date Selection -->\r
+    <section class="card" id="search-section">\r
+      <h2 style="margin-bottom: 1.25rem;">\u{1F50D} 1. \u0E40\u0E25\u0E37\u0E2D\u0E01\u0E27\u0E31\u0E19\u0E17\u0E35\u0E48\u0E40\u0E02\u0E49\u0E32\u0E1E\u0E31\u0E01</h2>\r
+      <div class="form-grid">\r
+        <div class="form-group">\r
+          <label for="check-in-date">\u0E27\u0E31\u0E19\u0E40\u0E0A\u0E47\u0E04\u0E2D\u0E34\u0E19 (Check-in)</label>\r
+          <input type="date" id="check-in-date" class="form-control" required>\r
+        </div>\r
+        <div class="form-group">\r
+          <label for="check-out-date">\u0E27\u0E31\u0E19\u0E40\u0E0A\u0E47\u0E04\u0E40\u0E2D\u0E32\u0E15\u0E4C (Check-out)</label>\r
+          <input type="date" id="check-out-date" class="form-control" required>\r
+        </div>\r
+        <div class="form-group">\r
+          <label for="guest-count">\u0E08\u0E33\u0E19\u0E27\u0E19\u0E1C\u0E39\u0E49\u0E40\u0E02\u0E49\u0E32\u0E1E\u0E31\u0E01</label>\r
+          <select id="guest-count" class="form-control">\r
+            <option value="1">1 \u0E17\u0E48\u0E32\u0E19</option>\r
+            <option value="2" selected>2 \u0E17\u0E48\u0E32\u0E19</option>\r
+            <option value="3">3 \u0E17\u0E48\u0E32\u0E19</option>\r
+            <option value="4">4 \u0E17\u0E48\u0E32\u0E19</option>\r
+          </select>\r
+        </div>\r
+      </div>\r
+      <button type="button" id="btn-check-availability" class="btn btn-primary btn-block">\r
+        \u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E2B\u0E49\u0E2D\u0E07\u0E27\u0E48\u0E32\u0E07\u0E41\u0E25\u0E30\u0E23\u0E32\u0E04\u0E32\r
+      </button>\r
+    </section>\r
+\r
+    <!-- Step 2: Room Selection -->\r
+    <section class="card" id="rooms-section" style="display: none;">\r
+      <h2>\u{1F6CF}\uFE0F 2. \u0E40\u0E25\u0E37\u0E2D\u0E01\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01</h2>\r
+      <div id="rooms-container" class="rooms-grid">\r
+        <!-- Room cards rendered dynamically -->\r
+      </div>\r
+    </section>\r
+\r
+    <!-- Step 3: Booking Form & Confirmation -->\r
+    <section class="card" id="booking-section" style="display: none;">\r
+      <h2>\u{1F4DD} 3. \u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E1C\u0E39\u0E49\u0E08\u0E2D\u0E07\u0E41\u0E25\u0E30\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19</h2>\r
+      <div class="form-grid">\r
+        <div class="form-group">\r
+          <label for="guest-name">\u0E0A\u0E37\u0E48\u0E2D-\u0E19\u0E32\u0E21\u0E2A\u0E01\u0E38\u0E25 *</label>\r
+          <input type="text" id="guest-name" class="form-control" placeholder="\u0E40\u0E0A\u0E48\u0E19 \u0E2A\u0E21\u0E0A\u0E32\u0E22 \u0E43\u0E08\u0E14\u0E35" required>\r
+        </div>\r
+        <div class="form-group">\r
+          <label for="guest-phone">\u0E40\u0E1A\u0E2D\u0E23\u0E4C\u0E42\u0E17\u0E23\u0E28\u0E31\u0E1E\u0E17\u0E4C\u0E15\u0E34\u0E14\u0E15\u0E48\u0E2D *</label>\r
+          <input type="tel" id="guest-phone" class="form-control" placeholder="08XXXXXXXX" required>\r
+        </div>\r
+        <div class="form-group">\r
+          <label for="guest-email">\u0E2D\u0E35\u0E40\u0E21\u0E25 (\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E23\u0E31\u0E1A\u0E43\u0E1A\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07) *</label>\r
+          <input type="email" id="guest-email" class="form-control" placeholder="name@example.com" required>\r
+        </div>\r
+      </div>\r
+\r
+      <div class="summary-box" id="quote-summary">\r
+        <div class="summary-row">\r
+          <span>\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01:</span>\r
+          <span id="summary-room-name">-</span>\r
+        </div>\r
+        <div class="summary-row">\r
+          <span>\u0E23\u0E30\u0E22\u0E30\u0E40\u0E27\u0E25\u0E32:</span>\r
+          <span id="summary-nights">-</span>\r
+        </div>\r
+        <div class="summary-row total">\r
+          <span>\u0E22\u0E2D\u0E14\u0E23\u0E27\u0E21\u0E0A\u0E33\u0E23\u0E30:</span>\r
+          <span id="summary-total-price">0 \u0E1A\u0E32\u0E17</span>\r
+        </div>\r
+      </div>\r
+\r
+      <button type="button" id="btn-submit-booking" class="btn btn-primary btn-block" style="margin-top: 1.5rem;">\r
+        \u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07\u0E41\u0E25\u0E30\u0E14\u0E33\u0E40\u0E19\u0E34\u0E19\u0E01\u0E32\u0E23\u0E0A\u0E33\u0E23\u0E30\u0E40\u0E07\u0E34\u0E19\r
+      </button>\r
+    </section>\r
+  </main>\r
+\r
+  <!-- Payment Modal -->\r
+  <div class="modal" id="payment-modal">\r
+    <div class="modal-content">\r
+      <h3>\u0E0A\u0E33\u0E23\u0E30\u0E40\u0E07\u0E34\u0E19\u0E1C\u0E48\u0E32\u0E19 PromptPay</h3>\r
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">\r
+        \u0E2A\u0E41\u0E01\u0E19 QR Code \u0E14\u0E49\u0E32\u0E19\u0E25\u0E48\u0E32\u0E07\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E0A\u0E33\u0E23\u0E30\u0E40\u0E07\u0E34\u0E19\u0E21\u0E31\u0E14\u0E08\u0E33\r
+      </p>\r
+      <img id="qr-image" class="qr-img" src="" alt="PromptPay QR Code">\r
+      <div style="font-size: 1.4rem; font-weight: 700; color: var(--primary);" id="modal-amount">0.00 THB</div>\r
+      <p style="font-size: 0.85rem; color: #dc2626; margin: 0.5rem 0;" id="qr-expiry-text">\u0E01\u0E23\u0E38\u0E13\u0E32\u0E0A\u0E33\u0E23\u0E30\u0E20\u0E32\u0E22\u0E43\u0E19 15 \u0E19\u0E32\u0E17\u0E35</p>\r
+      \r
+      <div style="margin-top: 1rem; text-align: left;">\r
+        <label style="font-size: 0.85rem; font-weight: 600;">\u0E41\u0E19\u0E1A\u0E2A\u0E25\u0E34\u0E1B\u0E01\u0E32\u0E23\u0E42\u0E2D\u0E19\u0E40\u0E07\u0E34\u0E19 (Slip):</label>\r
+        <input type="file" id="slip-file" accept="image/*" class="form-control" style="margin-top: 0.4rem;">\r
+      </div>\r
+\r
+      <button type="button" id="btn-upload-slip" class="btn btn-primary btn-block" style="margin-top: 1rem;">\r
+        \u0E2D\u0E31\u0E1B\u0E42\u0E2B\u0E25\u0E14\u0E2A\u0E25\u0E34\u0E1B\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\r
+      </button>\r
+    </div>\r
+  </div>\r
+\r
+  <script>\r
+    let selectedRoomId = null;\r
+    let currentBookingCode = null;\r
+\r
+    // Set default dates: today + 1 and today + 2\r
+    const today = new Date();\r
+    const tomorrow = new Date(today); tomorrow.setDate(tomorrow.getDate() + 1);\r
+    const dayAfter = new Date(today); dayAfter.setDate(dayAfter.getDate() + 2);\r
+\r
+    const fmt = (d) => d.toISOString().split('T')[0];\r
+    document.getElementById('check-in-date').value = fmt(tomorrow);\r
+    document.getElementById('check-out-date').value = fmt(dayAfter);\r
+\r
+    async function apiCall(action, payload = {}) {\r
+      const res = await fetch('', {\r
+        method: 'POST',\r
+        headers: { 'Content-Type': 'text/plain' },\r
+        body: JSON.stringify({ action, ...payload })\r
+      });\r
+      return await res.json();\r
+    }\r
+\r
+    document.getElementById('btn-check-availability').addEventListener('click', async () => {\r
+      const checkIn = document.getElementById('check-in-date').value;\r
+      const checkOut = document.getElementById('check-out-date').value;\r
+\r
+      if (!checkIn || !checkOut || checkIn >= checkOut) {\r
+        alert('\u0E01\u0E23\u0E38\u0E13\u0E32\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E27\u0E31\u0E19\u0E40\u0E0A\u0E47\u0E04\u0E2D\u0E34\u0E19\u0E41\u0E25\u0E30\u0E40\u0E0A\u0E47\u0E04\u0E40\u0E2D\u0E32\u0E15\u0E4C\u0E43\u0E2B\u0E49\u0E16\u0E39\u0E01\u0E15\u0E49\u0E2D\u0E07');\r
+        return;\r
+      }\r
+\r
+      const btn = document.getElementById('btn-check-availability');\r
+      btn.innerText = '\u0E01\u0E33\u0E25\u0E31\u0E07\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E2B\u0E49\u0E2D\u0E07\u0E27\u0E48\u0E32\u0E07...';\r
+      btn.disabled = true;\r
+\r
+      try {\r
+        const catalogRes = await apiCall('getCatalog');\r
+        if (catalogRes.ok) {\r
+          renderRooms(catalogRes.data.rooms || []);\r
+          document.getElementById('rooms-section').style.display = 'block';\r
+          document.getElementById('rooms-section').scrollIntoView({ behavior: 'smooth' });\r
+        } else {\r
+          alert('\u0E44\u0E21\u0E48\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E14\u0E36\u0E07\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01\u0E44\u0E14\u0E49: ' + (catalogRes.error?.message || ''));\r
+        }\r
+      } catch (err) {\r
+        alert('\u0E40\u0E01\u0E34\u0E14\u0E02\u0E49\u0E2D\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14\u0E43\u0E19\u0E01\u0E32\u0E23\u0E40\u0E0A\u0E37\u0E48\u0E2D\u0E21\u0E15\u0E48\u0E2D');\r
+      } finally {\r
+        btn.innerText = '\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E2B\u0E49\u0E2D\u0E07\u0E27\u0E48\u0E32\u0E07\u0E41\u0E25\u0E30\u0E23\u0E32\u0E04\u0E32';\r
+        btn.disabled = false;\r
+      }\r
+    });\r
+\r
+    function renderRooms(rooms) {\r
+      const container = document.getElementById('rooms-container');\r
+      container.innerHTML = '';\r
+\r
+      rooms.forEach((room) => {\r
+        const card = document.createElement('div');\r
+        card.className = 'room-card';\r
+        card.id = \`room-\${room.id}\`;\r
+        card.innerHTML = \`\r
+          <div>\r
+            <div class="room-name">\${room.name_th || room.name_en || room.id}</div>\r
+            <p style="color: var(--text-muted); font-size: 0.9rem;">\u0E23\u0E2D\u0E07\u0E23\u0E31\u0E1A\u0E1C\u0E39\u0E49\u0E40\u0E02\u0E49\u0E32\u0E1E\u0E31\u0E01 \${room.max_guests || 2} \u0E17\u0E48\u0E32\u0E19</p>\r
+          </div>\r
+          <div class="room-price">\r
+            \u0E3F\${(room.base_price || 0).toLocaleString()} <small>/ \u0E04\u0E37\u0E19</small>\r
+          </div>\r
+        \`;\r
+        card.addEventListener('click', () => selectRoom(room));\r
+        container.appendChild(card);\r
+      });\r
+    }\r
+\r
+    async function selectRoom(room) {\r
+      selectedRoomId = room.id;\r
+      document.querySelectorAll('.room-card').forEach(c => c.classList.remove('selected'));\r
+      document.getElementById(\`room-\${room.id}\`)?.classList.add('selected');\r
+\r
+      const checkIn = document.getElementById('check-in-date').value;\r
+      const checkOut = document.getElementById('check-out-date').value;\r
+      const guests = Number(document.getElementById('guest-count').value);\r
+\r
+      const quoteRes = await apiCall('quote', { roomId: room.id, checkIn, checkOut, guests });\r
+      if (quoteRes.ok) {\r
+        document.getElementById('summary-room-name').innerText = room.name_th || room.id;\r
+        document.getElementById('summary-nights').innerText = \`\${checkIn} \u0E16\u0E36\u0E07 \${checkOut} (\${quoteRes.data.nights} \u0E04\u0E37\u0E19)\`;\r
+        document.getElementById('summary-total-price').innerText = \`\u0E3F\${quoteRes.data.total_price.toLocaleString()}\`;\r
+\r
+        document.getElementById('booking-section').style.display = 'block';\r
+        document.getElementById('booking-section').scrollIntoView({ behavior: 'smooth' });\r
+      } else {\r
+        alert('\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01\u0E44\u0E21\u0E48\u0E27\u0E48\u0E32\u0E07\u0E43\u0E19\u0E27\u0E31\u0E19\u0E17\u0E35\u0E48\u0E40\u0E25\u0E37\u0E2D\u0E01 \u0E2B\u0E23\u0E37\u0E2D\u0E40\u0E01\u0E34\u0E14\u0E02\u0E49\u0E2D\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14');\r
+      }\r
+    }\r
+\r
+    document.getElementById('btn-submit-booking').addEventListener('click', async () => {\r
+      const name = document.getElementById('guest-name').value.trim();\r
+      const phone = document.getElementById('guest-phone').value.trim();\r
+      const email = document.getElementById('guest-email').value.trim();\r
+\r
+      if (!name || !phone || !email) {\r
+        alert('\u0E01\u0E23\u0E38\u0E13\u0E32\u0E01\u0E23\u0E2D\u0E01\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E1C\u0E39\u0E49\u0E08\u0E2D\u0E07\u0E43\u0E2B\u0E49\u0E04\u0E23\u0E1A\u0E16\u0E49\u0E27\u0E19');\r
+        return;\r
+      }\r
+\r
+      const payload = {\r
+        roomId: selectedRoomId,\r
+        checkIn: document.getElementById('check-in-date').value,\r
+        checkOut: document.getElementById('check-out-date').value,\r
+        guests: Number(document.getElementById('guest-count').value),\r
+        guest: { name, phone, email }\r
+      };\r
+\r
+      const res = await apiCall('createBooking', payload);\r
+      if (res.ok) {\r
+        currentBookingCode = res.data.booking_code;\r
+        showPaymentModal(res.data);\r
+      } else {\r
+        alert('\u0E44\u0E21\u0E48\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07\u0E44\u0E14\u0E49: ' + (res.error?.message || '\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01\u0E2D\u0E32\u0E08\u0E16\u0E39\u0E01\u0E08\u0E2D\u0E07\u0E41\u0E25\u0E49\u0E27'));\r
+      }\r
+    });\r
+\r
+    function showPaymentModal(data) {\r
+      const modal = document.getElementById('payment-modal');\r
+      document.getElementById('modal-amount').innerText = \`\u0E3F\${(data.amount_to_pay || data.total_price || 0).toLocaleString()}\`;\r
+      if (data.qr_image_url) {\r
+        document.getElementById('qr-image').src = data.qr_image_url;\r
+      }\r
+      modal.classList.add('active');\r
+    }\r
+  <\/script>\r
+</body>\r
+</html>\r
 `;
 
   // html-raw:D:\system make\little bro booking\src\views\admin.html
-  var admin_default = `<!DOCTYPE html>
-<html lang="th">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard - Little Bro Booking</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #3b82f6;
-      --primary-hover: #2563eb;
-      --success: #10b981;
-      --danger: #ef4444;
-      --warning: #f59e0b;
-      --dark: #0f172a;
-      --surface: #ffffff;
-      --surface-subtle: #f8fafc;
-      --border: #e2e8f0;
-      --text: #1e293b;
-      --text-muted: #64748b;
-      --radius: 12px;
-      --radius-sm: 8px;
-      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
-      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Prompt', sans-serif; }
-    body { background-color: #f8fafc; color: var(--text); min-height: 100vh; }
-
-    /* Login Screen */
-    .login-wrapper {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-      padding: 1.5rem;
-    }
-    .login-card {
-      background: white;
-      border-radius: var(--radius);
-      padding: 2.5rem;
-      width: 100%;
-      max-width: 420px;
-      box-shadow: var(--shadow-lg);
-      text-align: center;
-    }
-    .login-title { font-size: 1.5rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; }
-    .login-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2rem; }
-
-    /* Dashboard Layout */
-    .dashboard-wrapper { display: none; min-height: 100vh; flex-direction: column; }
-    .dashboard-wrapper.active { display: flex; }
-
-    .dash-nav {
-      background: white;
-      border-bottom: 1px solid var(--border);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 50;
-    }
-    .dash-brand { font-size: 1.25rem; font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 0.5rem; }
-    .user-badge { font-size: 0.85rem; background: var(--surface-subtle); padding: 0.4rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); }
-
-    .dash-content { max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; width: 100%; }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 2rem;
-    }
-    .stat-card {
-      background: white;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
-    }
-    .stat-val { font-size: 1.8rem; font-weight: 700; margin-top: 0.5rem; color: var(--dark); }
-
-    .card {
-      background: white;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-    .card-title { font-size: 1.15rem; font-weight: 700; color: var(--dark); }
-
-    .table-responsive { overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left; }
-    th { background: var(--surface-subtle); padding: 0.75rem 1rem; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border); }
-    td { padding: 0.85rem 1rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
-    tr:hover { background: #f1f5f9; }
-
-    .badge {
-      display: inline-block;
-      padding: 0.25rem 0.6rem;
-      border-radius: 9999px;
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
-    .badge-pending { background: #fef3c7; color: #b45309; }
-    .badge-confirmed { background: #d1fae5; color: #065f46; }
-    .badge-cancelled { background: #fee2e2; color: #991b1b; }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.5rem 1rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.85rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      transition: all 0.15s;
-    }
-    .btn-sm { padding: 0.35rem 0.75rem; font-size: 0.8rem; }
-    .btn-primary { background: var(--primary); color: white; }
-    .btn-primary:hover { background: var(--primary-hover); }
-    .btn-success { background: var(--success); color: white; }
-    .btn-danger { background: var(--danger); color: white; }
-    .btn-secondary { background: #e2e8f0; color: var(--text); }
-    .btn-block { width: 100%; }
-
-    .form-group { margin-bottom: 1.25rem; text-align: left; }
-    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--text-muted); }
-    .form-control {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      font-size: 0.95rem;
-      outline: none;
-      background: var(--surface-subtle);
-    }
-    .form-control:focus { border-color: var(--primary); background: white; }
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
-    .modal.active { display: flex; }
-    .modal-content {
-      background: white;
-      border-radius: var(--radius);
-      padding: 2rem;
-      max-width: 500px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- 1. Login View -->
-  <div class="login-wrapper" id="login-view">
-    <div class="login-card">
-      <div class="login-title">\u{1F510} \u0E40\u0E02\u0E49\u0E32\u0E2A\u0E39\u0E48\u0E23\u0E30\u0E1A\u0E1A\u0E1C\u0E39\u0E49\u0E14\u0E39\u0E41\u0E25</div>
-      <div class="login-desc">\u0E23\u0E30\u0E1A\u0E1A\u0E08\u0E31\u0E14\u0E01\u0E32\u0E23\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07 Little Bro Mae Hong Son</div>
-
-      <div id="login-error" style="display: none; background: #fee2e2; color: #dc2626; padding: 0.75rem; border-radius: var(--radius-sm); margin-bottom: 1rem; font-size: 0.85rem;"></div>
-
-      <form id="admin-login-form">
-        <div class="form-group">
-          <label for="admin-username">\u0E0A\u0E37\u0E48\u0E2D\u0E1C\u0E39\u0E49\u0E43\u0E0A\u0E49\u0E07\u0E32\u0E19 (Username / Email)</label>
-          <input type="text" id="admin-username" class="form-control" placeholder="\u0E40\u0E0A\u0E48\u0E19 admin" required autofocus>
-        </div>
-        <div class="form-group">
-          <label for="admin-password">\u0E23\u0E2B\u0E31\u0E2A\u0E1C\u0E48\u0E32\u0E19 (Password)</label>
-          <input type="password" id="admin-password" class="form-control" placeholder="\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022" required>
-        </div>
-        <button type="submit" id="btn-login-submit" class="btn btn-primary btn-block" style="padding: 0.85rem;">
-          \u0E40\u0E02\u0E49\u0E32\u0E2A\u0E39\u0E48\u0E23\u0E30\u0E1A\u0E1A
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- 2. Main Dashboard View -->
-  <div class="dashboard-wrapper" id="dashboard-view">
-    <nav class="dash-nav">
-      <div class="dash-brand">
-        \u{1F4CA} <span>Little Bro Admin</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 1rem;">
-        <span class="user-badge" id="current-user-display">\u{1F464} Admin</span>
-        <button class="btn btn-secondary btn-sm" id="btn-logout">\u0E2D\u0E2D\u0E01\u0E08\u0E32\u0E01\u0E23\u0E30\u0E1A\u0E1A</button>
-      </div>
-    </nav>
-
-    <main class="dash-content">
-      <!-- Stats Overview -->
-      <section class="stats-grid">
-        <div class="stat-card">
-          <div style="color: var(--text-muted); font-size: 0.85rem;">\u0E23\u0E32\u0E22\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14</div>
-          <div class="stat-val" id="stat-total-bookings">0</div>
-        </div>
-        <div class="stat-card">
-          <div style="color: #b45309; font-size: 0.85rem;">\u0E23\u0E2D\u0E0A\u0E33\u0E23\u0E30 / \u0E23\u0E2D\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E25\u0E34\u0E1B</div>
-          <div class="stat-val" id="stat-pending-bookings" style="color: #b45309;">0</div>
-        </div>
-        <div class="stat-card">
-          <div style="color: var(--success); font-size: 0.85rem;">\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E41\u0E25\u0E49\u0E27 (Confirmed)</div>
-          <div class="stat-val" id="stat-confirmed-bookings" style="color: var(--success);">0</div>
-        </div>
-      </section>
-
-      <!-- Bookings Table -->
-      <section class="card">
-        <div class="card-header">
-          <div class="card-title">\u{1F4CB} \u0E23\u0E32\u0E22\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01\u0E25\u0E48\u0E32\u0E2A\u0E38\u0E14</div>
-          <button class="btn btn-secondary btn-sm" id="btn-refresh-bookings">\u{1F504} \u0E23\u0E35\u0E40\u0E1F\u0E23\u0E0A</button>
-        </div>
-        <div class="table-responsive">
-          <table>
-            <thead>
-              <tr>
-                <th>\u0E23\u0E2B\u0E31\u0E2A\u0E08\u0E2D\u0E07</th>
-                <th>\u0E1C\u0E39\u0E49\u0E40\u0E02\u0E49\u0E32\u0E1E\u0E31\u0E01</th>
-                <th>\u0E40\u0E0A\u0E47\u0E04\u0E2D\u0E34\u0E19 - \u0E40\u0E0A\u0E47\u0E04\u0E40\u0E2D\u0E32\u0E15\u0E4C</th>
-                <th>\u0E22\u0E2D\u0E14\u0E23\u0E27\u0E21</th>
-                <th>\u0E2A\u0E16\u0E32\u0E19\u0E30</th>
-                <th>\u0E08\u0E31\u0E14\u0E01\u0E32\u0E23</th>
-              </tr>
-            </thead>
-            <tbody id="bookings-table-body">
-              <tr>
-                <td colspan="6" style="text-align: center; color: var(--text-muted);">\u0E01\u0E33\u0E25\u0E31\u0E07\u0E42\u0E2B\u0E25\u0E14\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25...</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <!-- Slip Viewer Modal -->
-  <div class="modal" id="slip-modal">
-    <div class="modal-content" style="text-align: center;">
-      <h3 style="margin-bottom: 1rem;">\u0E2A\u0E25\u0E34\u0E1B\u0E01\u0E32\u0E23\u0E42\u0E2D\u0E19\u0E40\u0E07\u0E34\u0E19</h3>
-      <div id="slip-image-container" style="min-height: 200px; display: flex; align-items: center; justify-content: center;">
-        <img id="slip-img" src="" alt="Slip Image" style="max-width: 100%; max-height: 450px; border-radius: var(--radius-sm);">
-      </div>
-      <button class="btn btn-secondary btn-block" id="btn-close-slip-modal" style="margin-top: 1.5rem;">\u0E1B\u0E34\u0E14</button>
-    </div>
-  </div>
-
-  <script>
-    let authToken = localStorage.getItem('littlebro_admin_token');
-
-    async function apiCall(action, payload = {}) {
-      const res = await fetch('', {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify({ action, token: authToken, ...payload })
-      });
-      return await res.json();
-    }
-
-    // Check existing session
-    if (authToken) {
-      showDashboard();
-    }
-
-    // Handle Login
-    document.getElementById('admin-login-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const username = document.getElementById('admin-username').value.trim();
-      const password = document.getElementById('admin-password').value.trim();
-      const errorDiv = document.getElementById('login-error');
-      const submitBtn = document.getElementById('btn-login-submit');
-
-      errorDiv.style.display = 'none';
-      submitBtn.innerText = '\u0E01\u0E33\u0E25\u0E31\u0E07\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A...';
-      submitBtn.disabled = true;
-
-      try {
-        const res = await apiCall('adminLogin', { username, password });
-        if (res.ok && res.data?.token) {
-          authToken = res.data.token;
-          localStorage.setItem('littlebro_admin_token', authToken);
-          localStorage.setItem('littlebro_admin_user', res.data.user?.username || username);
-          showDashboard();
-        } else {
-          errorDiv.innerText = res.error?.message || '\u0E0A\u0E37\u0E48\u0E2D\u0E1C\u0E39\u0E49\u0E43\u0E0A\u0E49\u0E2B\u0E23\u0E37\u0E2D\u0E23\u0E2B\u0E31\u0E2A\u0E1C\u0E48\u0E32\u0E19\u0E44\u0E21\u0E48\u0E16\u0E39\u0E01\u0E15\u0E49\u0E2D\u0E07';
-          errorDiv.style.display = 'block';
-        }
-      } catch (err) {
-        errorDiv.innerText = '\u0E44\u0E21\u0E48\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E40\u0E0A\u0E37\u0E48\u0E2D\u0E21\u0E15\u0E48\u0E2D\u0E40\u0E0B\u0E34\u0E23\u0E4C\u0E1F\u0E40\u0E27\u0E2D\u0E23\u0E4C\u0E44\u0E14\u0E49';
-        errorDiv.style.display = 'block';
-      } finally {
-        submitBtn.innerText = '\u0E40\u0E02\u0E49\u0E32\u0E2A\u0E39\u0E48\u0E23\u0E30\u0E1A\u0E1A';
-        submitBtn.disabled = false;
-      }
-    });
-
-    // Handle Logout
-    document.getElementById('btn-logout').addEventListener('click', async () => {
-      try { await apiCall('adminLogout'); } catch {}
-      authToken = null;
-      localStorage.removeItem('littlebro_admin_token');
-      localStorage.removeItem('littlebro_admin_user');
-      location.reload();
-    });
-
-    function showDashboard() {
-      document.getElementById('login-view').style.display = 'none';
-      document.getElementById('dashboard-view').classList.add('active');
-      const savedUser = localStorage.getItem('littlebro_admin_user') || 'Admin';
-      document.getElementById('current-user-display').innerText = \`\u{1F464} \${savedUser}\`;
-      loadBookings();
-    }
-
-    async function loadBookings() {
-      const tbody = document.getElementById('bookings-table-body');
-      tbody.innerHTML = '<tr><td colspan="6" style="text-align: center;">\u0E01\u0E33\u0E25\u0E31\u0E07\u0E42\u0E2B\u0E25\u0E14\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25...</td></tr>';
-
-      try {
-        const res = await apiCall('listBookings');
-        if (res.ok) {
-          const bookings = res.data?.bookings || [];
-          renderBookings(bookings);
-          updateStats(bookings);
-        } else {
-          if (res.error?.code === 'FORBIDDEN') {
-            alert('Session \u0E2B\u0E21\u0E14\u0E2D\u0E32\u0E22\u0E38 \u0E01\u0E23\u0E38\u0E13\u0E32\u0E40\u0E02\u0E49\u0E32\u0E2A\u0E39\u0E48\u0E23\u0E30\u0E1A\u0E1A\u0E43\u0E2B\u0E21\u0E48');
-            document.getElementById('btn-logout').click();
-            return;
-          }
-          tbody.innerHTML = \`<tr><td colspan="6" style="text-align: center; color: red;">\u0E40\u0E01\u0E34\u0E14\u0E02\u0E49\u0E2D\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14: \${res.error?.message || ''}</td></tr>\`;
-        }
-      } catch (err) {
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: red;">\u0E40\u0E0A\u0E37\u0E48\u0E2D\u0E21\u0E15\u0E48\u0E2D\u0E40\u0E0B\u0E34\u0E23\u0E4C\u0E1F\u0E40\u0E27\u0E2D\u0E23\u0E4C\u0E25\u0E49\u0E21\u0E40\u0E2B\u0E25\u0E27</td></tr>';
-      }
-    }
-
-    function updateStats(bookings) {
-      document.getElementById('stat-total-bookings').innerText = bookings.length;
-      document.getElementById('stat-pending-bookings').innerText = bookings.filter(b => b.status === 'PENDING').length;
-      document.getElementById('stat-confirmed-bookings').innerText = bookings.filter(b => b.status === 'CONFIRMED').length;
-    }
-
-    function renderBookings(bookings) {
-      const tbody = document.getElementById('bookings-table-body');
-      tbody.innerHTML = '';
-
-      if (bookings.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">\u0E44\u0E21\u0E48\u0E21\u0E35\u0E23\u0E32\u0E22\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07\u0E43\u0E19\u0E02\u0E13\u0E30\u0E19\u0E35\u0E49</td></tr>';
-        return;
-      }
-
-      bookings.forEach(b => {
-        const tr = document.createElement('tr');
-        const badgeClass = b.status === 'CONFIRMED' ? 'badge-confirmed' : b.status === 'CANCELLED' ? 'badge-cancelled' : 'badge-pending';
-        
-        tr.innerHTML = \`
-          <td><strong>\${b.code || b.booking_code || '-'}</strong></td>
-          <td>\${b.guest_name || '-'}<br><small style="color: var(--text-muted);">\${b.guest_phone || ''}</small></td>
-          <td>\${b.check_in} \u0E16\u0E36\u0E07 \${b.check_out}</td>
-          <td>\u0E3F\${(Number(b.total_price) || 0).toLocaleString()}</td>
-          <td><span class="badge \${badgeClass}">\${b.status}</span></td>
-          <td>
-            <div style="display: flex; gap: 0.35rem;">
-              \${b.has_slip ? \`<button class="btn btn-secondary btn-sm" onclick="viewSlip('\${b.code || b.booking_code}')">\u0E14\u0E39\u0E2A\u0E25\u0E34\u0E1B</button>\` : ''}
-              \${b.status !== 'CONFIRMED' ? \`<button class="btn btn-success btn-sm" onclick="confirmBooking('\${b.code || b.booking_code}')">\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19</button>\` : ''}
-              \${b.status !== 'CANCELLED' ? \`<button class="btn btn-danger btn-sm" onclick="cancelBooking('\${b.code || b.booking_code}')">\u0E22\u0E01\u0E40\u0E25\u0E34\u0E01</button>\` : ''}
-            </div>
-          </td>
-        \`;
-        tbody.appendChild(tr);
-      });
-    }
-
-    window.viewSlip = async (bookingCode) => {
-      const res = await apiCall('getSlip', { bookingCode });
-      if (res.ok && res.data?.slip_url) {
-        document.getElementById('slip-img').src = res.data.slip_url;
-        document.getElementById('slip-modal').classList.add('active');
-      } else {
-        alert('\u0E44\u0E21\u0E48\u0E1E\u0E1A\u0E23\u0E39\u0E1B\u0E2A\u0E25\u0E34\u0E1B\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E23\u0E32\u0E22\u0E01\u0E32\u0E23\u0E19\u0E35\u0E49');
-      }
-    };
-
-    window.confirmBooking = async (bookingCode) => {
-      if (!confirm(\`\u0E15\u0E49\u0E2D\u0E07\u0E01\u0E32\u0E23\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07 \${bookingCode} \u0E43\u0E0A\u0E48\u0E2B\u0E23\u0E37\u0E2D\u0E44\u0E21\u0E48?\`)) return;
-      const res = await apiCall('confirmBooking', { bookingCode });
-      if (res.ok) {
-        alert('\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07\u0E2A\u0E33\u0E40\u0E23\u0E47\u0E08');
-        loadBookings();
-      } else {
-        alert('\u0E40\u0E01\u0E34\u0E14\u0E02\u0E49\u0E2D\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14: ' + (res.error?.message || ''));
-      }
-    };
-
-    window.cancelBooking = async (bookingCode) => {
-      if (!confirm(\`\u0E15\u0E49\u0E2D\u0E07\u0E01\u0E32\u0E23\u0E22\u0E01\u0E40\u0E25\u0E34\u0E01\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07 \${bookingCode} \u0E43\u0E0A\u0E48\u0E2B\u0E23\u0E37\u0E2D\u0E44\u0E21\u0E48?\`)) return;
-      const res = await apiCall('cancelBooking', { bookingCode, reason: 'Admin cancelled' });
-      if (res.ok) {
-        alert('\u0E22\u0E01\u0E40\u0E25\u0E34\u0E01\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07\u0E2A\u0E33\u0E40\u0E23\u0E47\u0E08');
-        loadBookings();
-      } else {
-        alert('\u0E40\u0E01\u0E34\u0E14\u0E02\u0E49\u0E2D\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14: ' + (res.error?.message || ''));
-      }
-    };
-
-    document.getElementById('btn-close-slip-modal').addEventListener('click', () => {
-      document.getElementById('slip-modal').classList.remove('active');
-    });
-
-    document.getElementById('btn-refresh-bookings').addEventListener('click', loadBookings);
-  <\/script>
-</body>
-</html>
+  var admin_default = `<!DOCTYPE html>\r
+<html lang="th">\r
+<head>\r
+  <meta charset="UTF-8">\r
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">\r
+  <title>Admin Dashboard - Little Bro Booking</title>\r
+  <link rel="preconnect" href="https://fonts.googleapis.com">\r
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\r
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">\r
+  <style>\r
+    :root {\r
+      --primary: #3b82f6;\r
+      --primary-hover: #2563eb;\r
+      --success: #10b981;\r
+      --danger: #ef4444;\r
+      --warning: #f59e0b;\r
+      --dark: #0f172a;\r
+      --surface: #ffffff;\r
+      --surface-subtle: #f8fafc;\r
+      --border: #e2e8f0;\r
+      --text: #1e293b;\r
+      --text-muted: #64748b;\r
+      --radius: 12px;\r
+      --radius-sm: 8px;\r
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);\r
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);\r
+    }\r
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Prompt', sans-serif; }\r
+    body { background-color: #f8fafc; color: var(--text); min-height: 100vh; }\r
+\r
+    /* Login Screen */\r
+    .login-wrapper {\r
+      min-height: 100vh;\r
+      display: flex;\r
+      align-items: center;\r
+      justify-content: center;\r
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);\r
+      padding: 1.5rem;\r
+    }\r
+    .login-card {\r
+      background: white;\r
+      border-radius: var(--radius);\r
+      padding: 2.5rem;\r
+      width: 100%;\r
+      max-width: 420px;\r
+      box-shadow: var(--shadow-lg);\r
+      text-align: center;\r
+    }\r
+    .login-title { font-size: 1.5rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; }\r
+    .login-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2rem; }\r
+\r
+    /* Dashboard Layout */\r
+    .dashboard-wrapper { display: none; min-height: 100vh; flex-direction: column; }\r
+    .dashboard-wrapper.active { display: flex; }\r
+\r
+    .dash-nav {\r
+      background: white;\r
+      border-bottom: 1px solid var(--border);\r
+      padding: 1rem 2rem;\r
+      display: flex;\r
+      justify-content: space-between;\r
+      align-items: center;\r
+      position: sticky;\r
+      top: 0;\r
+      z-index: 50;\r
+    }\r
+    .dash-brand { font-size: 1.25rem; font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 0.5rem; }\r
+    .user-badge { font-size: 0.85rem; background: var(--surface-subtle); padding: 0.4rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); }\r
+\r
+    .dash-content { max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; width: 100%; }\r
+\r
+    .stats-grid {\r
+      display: grid;\r
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));\r
+      gap: 1.25rem;\r
+      margin-bottom: 2rem;\r
+    }\r
+    .stat-card {\r
+      background: white;\r
+      border-radius: var(--radius);\r
+      border: 1px solid var(--border);\r
+      padding: 1.5rem;\r
+      box-shadow: var(--shadow);\r
+    }\r
+    .stat-val { font-size: 1.8rem; font-weight: 700; margin-top: 0.5rem; color: var(--dark); }\r
+\r
+    .card {\r
+      background: white;\r
+      border-radius: var(--radius);\r
+      border: 1px solid var(--border);\r
+      box-shadow: var(--shadow);\r
+      padding: 1.5rem;\r
+      margin-bottom: 2rem;\r
+    }\r
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }\r
+    .card-title { font-size: 1.15rem; font-weight: 700; color: var(--dark); }\r
+\r
+    .table-responsive { overflow-x: auto; }\r
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left; }\r
+    th { background: var(--surface-subtle); padding: 0.75rem 1rem; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border); }\r
+    td { padding: 0.85rem 1rem; border-bottom: 1px solid var(--border); vertical-align: middle; }\r
+    tr:hover { background: #f1f5f9; }\r
+\r
+    .badge {\r
+      display: inline-block;\r
+      padding: 0.25rem 0.6rem;\r
+      border-radius: 9999px;\r
+      font-size: 0.75rem;\r
+      font-weight: 600;\r
+    }\r
+    .badge-pending { background: #fef3c7; color: #b45309; }\r
+    .badge-confirmed { background: #d1fae5; color: #065f46; }\r
+    .badge-cancelled { background: #fee2e2; color: #991b1b; }\r
+\r
+    .btn {\r
+      display: inline-flex;\r
+      align-items: center;\r
+      justify-content: center;\r
+      padding: 0.5rem 1rem;\r
+      border-radius: var(--radius-sm);\r
+      font-size: 0.85rem;\r
+      font-weight: 600;\r
+      cursor: pointer;\r
+      border: none;\r
+      transition: all 0.15s;\r
+    }\r
+    .btn-sm { padding: 0.35rem 0.75rem; font-size: 0.8rem; }\r
+    .btn-primary { background: var(--primary); color: white; }\r
+    .btn-primary:hover { background: var(--primary-hover); }\r
+    .btn-success { background: var(--success); color: white; }\r
+    .btn-danger { background: var(--danger); color: white; }\r
+    .btn-secondary { background: #e2e8f0; color: var(--text); }\r
+    .btn-block { width: 100%; }\r
+\r
+    .form-group { margin-bottom: 1.25rem; text-align: left; }\r
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--text-muted); }\r
+    .form-control {\r
+      width: 100%;\r
+      padding: 0.75rem 1rem;\r
+      border: 1px solid var(--border);\r
+      border-radius: var(--radius-sm);\r
+      font-size: 0.95rem;\r
+      outline: none;\r
+      background: var(--surface-subtle);\r
+    }\r
+    .form-control:focus { border-color: var(--primary); background: white; }\r
+\r
+    /* Modal */\r
+    .modal {\r
+      display: none;\r
+      position: fixed;\r
+      top: 0; left: 0; width: 100%; height: 100%;\r
+      background: rgba(0, 0, 0, 0.6);\r
+      backdrop-filter: blur(4px);\r
+      z-index: 100;\r
+      align-items: center;\r
+      justify-content: center;\r
+      padding: 1rem;\r
+    }\r
+    .modal.active { display: flex; }\r
+    .modal-content {\r
+      background: white;\r
+      border-radius: var(--radius);\r
+      padding: 2rem;\r
+      max-width: 500px;\r
+      width: 100%;\r
+      max-height: 90vh;\r
+      overflow-y: auto;\r
+    }\r
+  </style>\r
+</head>\r
+<body>\r
+\r
+  <!-- 1. Login View -->\r
+  <div class="login-wrapper" id="login-view">\r
+    <div class="login-card">\r
+      <div class="login-title">\u{1F510} \u0E40\u0E02\u0E49\u0E32\u0E2A\u0E39\u0E48\u0E23\u0E30\u0E1A\u0E1A\u0E1C\u0E39\u0E49\u0E14\u0E39\u0E41\u0E25</div>\r
+      <div class="login-desc">\u0E23\u0E30\u0E1A\u0E1A\u0E08\u0E31\u0E14\u0E01\u0E32\u0E23\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07 Little Bro Mae Hong Son</div>\r
+\r
+      <div id="login-error" style="display: none; background: #fee2e2; color: #dc2626; padding: 0.75rem; border-radius: var(--radius-sm); margin-bottom: 1rem; font-size: 0.85rem;"></div>\r
+\r
+      <form id="admin-login-form">\r
+        <div class="form-group">\r
+          <label for="admin-username">\u0E0A\u0E37\u0E48\u0E2D\u0E1C\u0E39\u0E49\u0E43\u0E0A\u0E49\u0E07\u0E32\u0E19 (Username / Email)</label>\r
+          <input type="text" id="admin-username" class="form-control" placeholder="\u0E40\u0E0A\u0E48\u0E19 admin" required autofocus>\r
+        </div>\r
+        <div class="form-group">\r
+          <label for="admin-password">\u0E23\u0E2B\u0E31\u0E2A\u0E1C\u0E48\u0E32\u0E19 (Password)</label>\r
+          <input type="password" id="admin-password" class="form-control" placeholder="\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022" required>\r
+        </div>\r
+        <button type="submit" id="btn-login-submit" class="btn btn-primary btn-block" style="padding: 0.85rem;">\r
+          \u0E40\u0E02\u0E49\u0E32\u0E2A\u0E39\u0E48\u0E23\u0E30\u0E1A\u0E1A\r
+        </button>\r
+      </form>\r
+    </div>\r
+  </div>\r
+\r
+  <!-- 2. Main Dashboard View -->\r
+  <div class="dashboard-wrapper" id="dashboard-view">\r
+    <nav class="dash-nav">\r
+      <div class="dash-brand">\r
+        \u{1F4CA} <span>Little Bro Admin</span>\r
+      </div>\r
+      <div style="display: flex; align-items: center; gap: 1rem;">\r
+        <span class="user-badge" id="current-user-display">\u{1F464} Admin</span>\r
+        <button class="btn btn-secondary btn-sm" id="btn-logout">\u0E2D\u0E2D\u0E01\u0E08\u0E32\u0E01\u0E23\u0E30\u0E1A\u0E1A</button>\r
+      </div>\r
+    </nav>\r
+\r
+    <main class="dash-content">\r
+      <!-- Stats Overview -->\r
+      <section class="stats-grid">\r
+        <div class="stat-card">\r
+          <div style="color: var(--text-muted); font-size: 0.85rem;">\u0E23\u0E32\u0E22\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14</div>\r
+          <div class="stat-val" id="stat-total-bookings">0</div>\r
+        </div>\r
+        <div class="stat-card">\r
+          <div style="color: #b45309; font-size: 0.85rem;">\u0E23\u0E2D\u0E0A\u0E33\u0E23\u0E30 / \u0E23\u0E2D\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E25\u0E34\u0E1B</div>\r
+          <div class="stat-val" id="stat-pending-bookings" style="color: #b45309;">0</div>\r
+        </div>\r
+        <div class="stat-card">\r
+          <div style="color: var(--success); font-size: 0.85rem;">\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E41\u0E25\u0E49\u0E27 (Confirmed)</div>\r
+          <div class="stat-val" id="stat-confirmed-bookings" style="color: var(--success);">0</div>\r
+        </div>\r
+      </section>\r
+\r
+      <!-- Bookings Table -->\r
+      <section class="card">\r
+        <div class="card-header">\r
+          <div class="card-title">\u{1F4CB} \u0E23\u0E32\u0E22\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01\u0E25\u0E48\u0E32\u0E2A\u0E38\u0E14</div>\r
+          <button class="btn btn-secondary btn-sm" id="btn-refresh-bookings">\u{1F504} \u0E23\u0E35\u0E40\u0E1F\u0E23\u0E0A</button>\r
+        </div>\r
+        <div class="table-responsive">\r
+          <table>\r
+            <thead>\r
+              <tr>\r
+                <th>\u0E23\u0E2B\u0E31\u0E2A\u0E08\u0E2D\u0E07</th>\r
+                <th>\u0E1C\u0E39\u0E49\u0E40\u0E02\u0E49\u0E32\u0E1E\u0E31\u0E01</th>\r
+                <th>\u0E40\u0E0A\u0E47\u0E04\u0E2D\u0E34\u0E19 - \u0E40\u0E0A\u0E47\u0E04\u0E40\u0E2D\u0E32\u0E15\u0E4C</th>\r
+                <th>\u0E22\u0E2D\u0E14\u0E23\u0E27\u0E21</th>\r
+                <th>\u0E2A\u0E16\u0E32\u0E19\u0E30</th>\r
+                <th>\u0E08\u0E31\u0E14\u0E01\u0E32\u0E23</th>\r
+              </tr>\r
+            </thead>\r
+            <tbody id="bookings-table-body">\r
+              <tr>\r
+                <td colspan="6" style="text-align: center; color: var(--text-muted);">\u0E01\u0E33\u0E25\u0E31\u0E07\u0E42\u0E2B\u0E25\u0E14\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25...</td>\r
+              </tr>\r
+            </tbody>\r
+          </table>\r
+        </div>\r
+      </section>\r
+    </main>\r
+  </div>\r
+\r
+  <!-- Slip Viewer Modal -->\r
+  <div class="modal" id="slip-modal">\r
+    <div class="modal-content" style="text-align: center;">\r
+      <h3 style="margin-bottom: 1rem;">\u0E2A\u0E25\u0E34\u0E1B\u0E01\u0E32\u0E23\u0E42\u0E2D\u0E19\u0E40\u0E07\u0E34\u0E19</h3>\r
+      <div id="slip-image-container" style="min-height: 200px; display: flex; align-items: center; justify-content: center;">\r
+        <img id="slip-img" src="" alt="Slip Image" style="max-width: 100%; max-height: 450px; border-radius: var(--radius-sm);">\r
+      </div>\r
+      <button class="btn btn-secondary btn-block" id="btn-close-slip-modal" style="margin-top: 1.5rem;">\u0E1B\u0E34\u0E14</button>\r
+    </div>\r
+  </div>\r
+\r
+  <script>\r
+    let authToken = localStorage.getItem('littlebro_admin_token');\r
+\r
+    async function apiCall(action, payload = {}) {\r
+      const res = await fetch('', {\r
+        method: 'POST',\r
+        headers: { 'Content-Type': 'text/plain' },\r
+        body: JSON.stringify({ action, token: authToken, ...payload })\r
+      });\r
+      return await res.json();\r
+    }\r
+\r
+    // Check existing session\r
+    if (authToken) {\r
+      showDashboard();\r
+    }\r
+\r
+    // Handle Login\r
+    document.getElementById('admin-login-form').addEventListener('submit', async (e) => {\r
+      e.preventDefault();\r
+      const username = document.getElementById('admin-username').value.trim();\r
+      const password = document.getElementById('admin-password').value.trim();\r
+      const errorDiv = document.getElementById('login-error');\r
+      const submitBtn = document.getElementById('btn-login-submit');\r
+\r
+      errorDiv.style.display = 'none';\r
+      submitBtn.innerText = '\u0E01\u0E33\u0E25\u0E31\u0E07\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A...';\r
+      submitBtn.disabled = true;\r
+\r
+      try {\r
+        const res = await apiCall('adminLogin', { username, password });\r
+        if (res.ok && res.data?.token) {\r
+          authToken = res.data.token;\r
+          localStorage.setItem('littlebro_admin_token', authToken);\r
+          localStorage.setItem('littlebro_admin_user', res.data.user?.username || username);\r
+          showDashboard();\r
+        } else {\r
+          errorDiv.innerText = res.error?.message || '\u0E0A\u0E37\u0E48\u0E2D\u0E1C\u0E39\u0E49\u0E43\u0E0A\u0E49\u0E2B\u0E23\u0E37\u0E2D\u0E23\u0E2B\u0E31\u0E2A\u0E1C\u0E48\u0E32\u0E19\u0E44\u0E21\u0E48\u0E16\u0E39\u0E01\u0E15\u0E49\u0E2D\u0E07';\r
+          errorDiv.style.display = 'block';\r
+        }\r
+      } catch (err) {\r
+        errorDiv.innerText = '\u0E44\u0E21\u0E48\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E40\u0E0A\u0E37\u0E48\u0E2D\u0E21\u0E15\u0E48\u0E2D\u0E40\u0E0B\u0E34\u0E23\u0E4C\u0E1F\u0E40\u0E27\u0E2D\u0E23\u0E4C\u0E44\u0E14\u0E49';\r
+        errorDiv.style.display = 'block';\r
+      } finally {\r
+        submitBtn.innerText = '\u0E40\u0E02\u0E49\u0E32\u0E2A\u0E39\u0E48\u0E23\u0E30\u0E1A\u0E1A';\r
+        submitBtn.disabled = false;\r
+      }\r
+    });\r
+\r
+    // Handle Logout\r
+    document.getElementById('btn-logout').addEventListener('click', async () => {\r
+      try { await apiCall('adminLogout'); } catch {}\r
+      authToken = null;\r
+      localStorage.removeItem('littlebro_admin_token');\r
+      localStorage.removeItem('littlebro_admin_user');\r
+      location.reload();\r
+    });\r
+\r
+    function showDashboard() {\r
+      document.getElementById('login-view').style.display = 'none';\r
+      document.getElementById('dashboard-view').classList.add('active');\r
+      const savedUser = localStorage.getItem('littlebro_admin_user') || 'Admin';\r
+      document.getElementById('current-user-display').innerText = \`\u{1F464} \${savedUser}\`;\r
+      loadBookings();\r
+    }\r
+\r
+    async function loadBookings() {\r
+      const tbody = document.getElementById('bookings-table-body');\r
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align: center;">\u0E01\u0E33\u0E25\u0E31\u0E07\u0E42\u0E2B\u0E25\u0E14\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25...</td></tr>';\r
+\r
+      try {\r
+        const res = await apiCall('listBookings');\r
+        if (res.ok) {\r
+          const bookings = res.data?.bookings || [];\r
+          renderBookings(bookings);\r
+          updateStats(bookings);\r
+        } else {\r
+          if (res.error?.code === 'FORBIDDEN') {\r
+            alert('Session \u0E2B\u0E21\u0E14\u0E2D\u0E32\u0E22\u0E38 \u0E01\u0E23\u0E38\u0E13\u0E32\u0E40\u0E02\u0E49\u0E32\u0E2A\u0E39\u0E48\u0E23\u0E30\u0E1A\u0E1A\u0E43\u0E2B\u0E21\u0E48');\r
+            document.getElementById('btn-logout').click();\r
+            return;\r
+          }\r
+          tbody.innerHTML = \`<tr><td colspan="6" style="text-align: center; color: red;">\u0E40\u0E01\u0E34\u0E14\u0E02\u0E49\u0E2D\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14: \${res.error?.message || ''}</td></tr>\`;\r
+        }\r
+      } catch (err) {\r
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: red;">\u0E40\u0E0A\u0E37\u0E48\u0E2D\u0E21\u0E15\u0E48\u0E2D\u0E40\u0E0B\u0E34\u0E23\u0E4C\u0E1F\u0E40\u0E27\u0E2D\u0E23\u0E4C\u0E25\u0E49\u0E21\u0E40\u0E2B\u0E25\u0E27</td></tr>';\r
+      }\r
+    }\r
+\r
+    function updateStats(bookings) {\r
+      document.getElementById('stat-total-bookings').innerText = bookings.length;\r
+      document.getElementById('stat-pending-bookings').innerText = bookings.filter(b => b.status === 'PENDING').length;\r
+      document.getElementById('stat-confirmed-bookings').innerText = bookings.filter(b => b.status === 'CONFIRMED').length;\r
+    }\r
+\r
+    function renderBookings(bookings) {\r
+      const tbody = document.getElementById('bookings-table-body');\r
+      tbody.innerHTML = '';\r
+\r
+      if (bookings.length === 0) {\r
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">\u0E44\u0E21\u0E48\u0E21\u0E35\u0E23\u0E32\u0E22\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07\u0E43\u0E19\u0E02\u0E13\u0E30\u0E19\u0E35\u0E49</td></tr>';\r
+        return;\r
+      }\r
+\r
+      bookings.forEach(b => {\r
+        const tr = document.createElement('tr');\r
+        const badgeClass = b.status === 'CONFIRMED' ? 'badge-confirmed' : b.status === 'CANCELLED' ? 'badge-cancelled' : 'badge-pending';\r
+        \r
+        tr.innerHTML = \`\r
+          <td><strong>\${b.code || b.booking_code || '-'}</strong></td>\r
+          <td>\${b.guest_name || '-'}<br><small style="color: var(--text-muted);">\${b.guest_phone || ''}</small></td>\r
+          <td>\${b.check_in} \u0E16\u0E36\u0E07 \${b.check_out}</td>\r
+          <td>\u0E3F\${(Number(b.total_price) || 0).toLocaleString()}</td>\r
+          <td><span class="badge \${badgeClass}">\${b.status}</span></td>\r
+          <td>\r
+            <div style="display: flex; gap: 0.35rem;">\r
+              \${b.has_slip ? \`<button class="btn btn-secondary btn-sm" onclick="viewSlip('\${b.code || b.booking_code}')">\u0E14\u0E39\u0E2A\u0E25\u0E34\u0E1B</button>\` : ''}\r
+              \${b.status !== 'CONFIRMED' ? \`<button class="btn btn-success btn-sm" onclick="confirmBooking('\${b.code || b.booking_code}')">\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19</button>\` : ''}\r
+              \${b.status !== 'CANCELLED' ? \`<button class="btn btn-danger btn-sm" onclick="cancelBooking('\${b.code || b.booking_code}')">\u0E22\u0E01\u0E40\u0E25\u0E34\u0E01</button>\` : ''}\r
+            </div>\r
+          </td>\r
+        \`;\r
+        tbody.appendChild(tr);\r
+      });\r
+    }\r
+\r
+    window.viewSlip = async (bookingCode) => {\r
+      const res = await apiCall('getSlip', { bookingCode });\r
+      if (res.ok && res.data?.slip_url) {\r
+        document.getElementById('slip-img').src = res.data.slip_url;\r
+        document.getElementById('slip-modal').classList.add('active');\r
+      } else {\r
+        alert('\u0E44\u0E21\u0E48\u0E1E\u0E1A\u0E23\u0E39\u0E1B\u0E2A\u0E25\u0E34\u0E1B\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E23\u0E32\u0E22\u0E01\u0E32\u0E23\u0E19\u0E35\u0E49');\r
+      }\r
+    };\r
+\r
+    window.confirmBooking = async (bookingCode) => {\r
+      if (!confirm(\`\u0E15\u0E49\u0E2D\u0E07\u0E01\u0E32\u0E23\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07 \${bookingCode} \u0E43\u0E0A\u0E48\u0E2B\u0E23\u0E37\u0E2D\u0E44\u0E21\u0E48?\`)) return;\r
+      const res = await apiCall('confirmBooking', { bookingCode });\r
+      if (res.ok) {\r
+        alert('\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07\u0E2A\u0E33\u0E40\u0E23\u0E47\u0E08');\r
+        loadBookings();\r
+      } else {\r
+        alert('\u0E40\u0E01\u0E34\u0E14\u0E02\u0E49\u0E2D\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14: ' + (res.error?.message || ''));\r
+      }\r
+    };\r
+\r
+    window.cancelBooking = async (bookingCode) => {\r
+      if (!confirm(\`\u0E15\u0E49\u0E2D\u0E07\u0E01\u0E32\u0E23\u0E22\u0E01\u0E40\u0E25\u0E34\u0E01\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07 \${bookingCode} \u0E43\u0E0A\u0E48\u0E2B\u0E23\u0E37\u0E2D\u0E44\u0E21\u0E48?\`)) return;\r
+      const res = await apiCall('cancelBooking', { bookingCode, reason: 'Admin cancelled' });\r
+      if (res.ok) {\r
+        alert('\u0E22\u0E01\u0E40\u0E25\u0E34\u0E01\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07\u0E2A\u0E33\u0E40\u0E23\u0E47\u0E08');\r
+        loadBookings();\r
+      } else {\r
+        alert('\u0E40\u0E01\u0E34\u0E14\u0E02\u0E49\u0E2D\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14: ' + (res.error?.message || ''));\r
+      }\r
+    };\r
+\r
+    document.getElementById('btn-close-slip-modal').addEventListener('click', () => {\r
+      document.getElementById('slip-modal').classList.remove('active');\r
+    });\r
+\r
+    document.getElementById('btn-refresh-bookings').addEventListener('click', loadBookings);\r
+  <\/script>\r
+</body>\r
+</html>\r
 `;
 
   // src/router/getRouter.ts

@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Restructure the monolithic 4,119-line `get.gs` file into clean, modular TypeScript files under `src/`, add dedicated GET & POST Routers (`src/router/`), implement username+password admin authentication, create responsive web views for booking and admin (`src/views/`), and configure esbuild bundling and Vitest unit testing.
+**Goal:** Restructure the monolithic 4,119-line `get.gs` file of `littlebro-booking-schema` into clean, modular TypeScript files under `src/`, add dedicated GET & POST Routers (`src/router/`), implement username+password admin authentication, create responsive web views for booking and admin (`src/views/`), and configure esbuild bundling and Vitest unit testing.
 
 **Architecture:** Clean Architecture separating pure business logic (`src/core/`), Google Apps Script infrastructure adapters (`src/adapters/`), dedicated request dispatchers (`src/router/`), and responsive web views (`src/views/`).
 

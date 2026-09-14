@@ -1,7 +1,7 @@
 # Design: Restructure Modular TypeScript, Router & Username/Password Authentication
 
 **Date:** 2026-09-14  
-**Project:** Little Bro Booking (Google Apps Script Backend & Web Frontend)  
+**Project:** littlebro-booking-schema (Google Apps Script Backend & Web Frontend)  
 **Status:** Approved  
 
 ---

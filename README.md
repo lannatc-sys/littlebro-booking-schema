@@ -1,6 +1,6 @@
-# Little Bro Booking — Modular Google Apps Script & Web App
+# littlebro-booking-schema — Modular Google Apps Script & Web App
 
-ระบบจองห้องพักและจัดการการจองสำหรับ Little Bro Mae Hong Son รองรับทั้ง Frontend หน้าจองห้องพักสำหรับลูกค้า, แดชบอร์ดสำหรับผู้ดูแลระบบ (Admin Dashboard), และ Backend API บน Google Apps Script
+ระบบจองห้องพักและจัดการการจองสำหรับ littlebro-booking-schema รองรับทั้ง Frontend หน้าจองห้องพักสำหรับลูกค้า, แดชบอร์ดสำหรับผู้ดูแลระบบ (Admin Dashboard), และ Backend API บน Google Apps Script
 
 ---
 
