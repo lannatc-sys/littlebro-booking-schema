@@ -1,0 +1,17 @@
+{
+  "name": "little-bro-booking",
+  "version": "1.0.0",
+  "description": "Google Apps Script backend and web app for Little Bro Booking",
+  "main": "get.gs",
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "esbuild": "^0.25.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}
