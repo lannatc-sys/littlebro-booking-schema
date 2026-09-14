@@ -668,793 +668,319 @@ var _App = (() => {
   var views_default = `<!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Little Bro Mae Hong Son - \u0E23\u0E30\u0E1A\u0E1A\u0E08\u0E2D\u0E07\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01\u0E41\u0E25\u0E30\u0E08\u0E31\u0E14\u0E01\u0E32\u0E23</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #10b981;
-      --primary-hover: #059669;
-      --primary-light: #d1fae5;
-      --blue: #3b82f6;
-      --blue-hover: #2563eb;
-      --success: #10b981;
-      --danger: #ef4444;
-      --warning: #f59e0b;
-      --dark: #0f172a;
-      --surface: #ffffff;
-      --surface-subtle: #f8fafc;
-      --border: #e2e8f0;
-      --text: #1e293b;
-      --text-muted: #64748b;
-      --radius: 16px;
-      --radius-sm: 8px;
-      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Prompt', sans-serif; }
-    body { background-color: #f1f5f9; color: var(--text); line-height: 1.6; min-height: 100vh; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Bro \xB7 \u0E08\u0E2D\u0E07\u0E17\u0E35\u0E48\u0E1E\u0E31\u0E01</title>
     
-    .navbar {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(12px);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      border-bottom: 1px solid var(--border);
-      padding: 0.85rem 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .brand { font-size: 1.3rem; font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 0.5rem; cursor: pointer; }
-    .brand span { color: var(--primary); }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      padding: 0.65rem 1.25rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      transition: all 0.2s;
-    }
-    .btn-sm { padding: 0.4rem 0.8rem; font-size: 0.85rem; }
-    .btn-primary { background: var(--primary); color: white; }
-    .btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); }
-    .btn-blue { background: var(--blue); color: white; }
-    .btn-blue:hover { background: var(--blue-hover); }
-    .btn-success { background: var(--success); color: white; }
-    .btn-danger { background: var(--danger); color: white; }
-    .btn-secondary { background: #e2e8f0; color: var(--text); }
-    .btn-secondary:hover { background: #cbd5e1; }
-    .btn-block { width: 100%; }
-
-    /* Views */
-    .view-section { display: none; }
-    .view-section.active { display: block; }
-
-    /* Customer View */
-    .hero {
-      background: linear-gradient(135deg, #064e3b 0%, #0f172a 100%);
-      color: white;
-      padding: 3.5rem 1.5rem 4.5rem;
-      text-align: center;
-    }
-    .hero h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.75rem; }
-    .hero p { font-size: 1.05rem; color: #cbd5e1; max-width: 600px; margin: 0 auto; font-weight: 300; }
-
-    .container { max-width: 1000px; margin: -2.5rem auto 4rem; padding: 0 1.25rem; position: relative; z-index: 10; }
-
-    .card {
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--border);
-      padding: 1.75rem;
-      margin-bottom: 1.75rem;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 1.25rem;
-    }
-    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-    .form-group label { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
-    .form-control {
-      padding: 0.75rem 1rem;
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border);
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      background: var(--surface-subtle);
-    }
-    .form-control:focus { border-color: var(--primary); background: var(--surface); box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2); }
-
-    .rooms-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.25rem;
-      margin-top: 1.25rem;
-    }
-    .room-card {
-      border: 2px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.25rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      background: var(--surface);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .room-card:hover { border-color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow); }
-    .room-card.selected { border-color: var(--primary); background: #f0fdf4; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25); }
-    .room-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--dark); }
-    .room-price { font-size: 1.35rem; font-weight: 700; color: var(--primary); margin: 0.5rem 0; }
-    .room-price small { font-size: 0.85rem; font-weight: 400; color: var(--text-muted); }
-
-    .summary-box {
-      background: var(--surface-subtle);
-      border-radius: var(--radius-sm);
-      padding: 1.25rem;
-      margin-top: 1.25rem;
-      border: 1px solid var(--border);
-    }
-    .summary-row { display: flex; justify-content: space-between; margin-bottom: 0.4rem; font-size: 0.95rem; }
-    .summary-row.total { font-size: 1.25rem; font-weight: 700; color: var(--primary); border-top: 1px dashed var(--border); padding-top: 0.75rem; margin-top: 0.75rem; }
-
-    /* Admin View */
-    .admin-container { max-width: 1100px; margin: 2rem auto; padding: 0 1.25rem; }
-    .login-box {
-      max-width: 400px;
-      margin: 4rem auto;
-      background: white;
-      border-radius: var(--radius);
-      padding: 2.25rem;
-      box-shadow: var(--shadow-lg);
-      border: 1px solid var(--border);
-      text-align: center;
-    }
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 1.75rem;
-    }
-    .stat-card {
-      background: white;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      padding: 1.25rem;
-      box-shadow: var(--shadow);
-    }
-    .stat-val { font-size: 1.75rem; font-weight: 700; margin-top: 0.4rem; color: var(--dark); }
-
-    .table-responsive { overflow-x: auto; margin-top: 1rem; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left; }
-    th { background: var(--surface-subtle); padding: 0.75rem 1rem; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border); }
-    td { padding: 0.85rem 1rem; border-bottom: 1px solid var(--border); }
-    tr:hover { background: #f8fafc; }
-
-    .badge {
-      display: inline-block;
-      padding: 0.25rem 0.6rem;
-      border-radius: 9999px;
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
-    .badge-pending { background: #fef3c7; color: #b45309; }
-    .badge-confirmed { background: #d1fae5; color: #065f46; }
-    .badge-cancelled { background: #fee2e2; color: #991b1b; }
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(4px);
-      z-index: 100;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
-    }
-    .modal.active { display: flex; }
-    .modal-content {
-      background: white;
-      border-radius: var(--radius);
-      padding: 1.75rem;
-      max-width: 480px;
-      width: 100%;
-      text-align: center;
-      box-shadow: var(--shadow-lg);
-    }
-    .qr-img { width: 220px; height: 220px; margin: 1rem auto; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0.5rem; }
-  </style>
+    <!-- Google Fonts: Prompt -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome \u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A \u0E44\u0E2D\u0E04\u0E2D\u0E19 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"><\/script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Prompt', 'sans-serif'] },
+                    colors: {
+                        theme: {
+                            bg: '#FAF6F0',      // \u0E1E\u0E37\u0E49\u0E19\u0E2B\u0E25\u0E31\u0E07\u0E2A\u0E35\u0E04\u0E23\u0E35\u0E21 (\u0E15\u0E32\u0E21 Dashboard)
+                            card: '#FFFFFF',    // \u0E2A\u0E35\u0E1E\u0E37\u0E49\u0E19\u0E2B\u0E25\u0E31\u0E07\u0E01\u0E32\u0E23\u0E4C\u0E14
+                            border: '#EAE1D9',  // \u0E2A\u0E35\u0E40\u0E2A\u0E49\u0E19\u0E02\u0E2D\u0E1A\u0E2D\u0E48\u0E2D\u0E19\u0E46
+                            text: '#3A312E',    // \u0E2A\u0E35\u0E15\u0E31\u0E27\u0E2D\u0E31\u0E01\u0E29\u0E23\u0E2B\u0E25\u0E31\u0E01 (\u0E19\u0E49\u0E33\u0E15\u0E32\u0E25\u0E40\u0E17\u0E32)
+                            muted: '#8A7F7A',   // \u0E2A\u0E35\u0E15\u0E31\u0E27\u0E2D\u0E31\u0E01\u0E29\u0E23\u0E23\u0E2D\u0E07
+                            dark: '#1B1715',    // \u0E2A\u0E35\u0E14\u0E33\u0E2D\u0E21\u0E19\u0E49\u0E33\u0E15\u0E32\u0E25 (Sidebar Admin)
+                        },
+                        brand: {
+                            50: '#FDF7F4',
+                            100: '#FCECE6',
+                            500: '#E47251',     // \u0E2A\u0E35\u0E2A\u0E49\u0E21\u0E2D\u0E34\u0E10 (\u0E1B\u0E38\u0E48\u0E21/\u0E40\u0E19\u0E49\u0E19)
+                            600: '#CE5C3B',     // \u0E2A\u0E35\u0E2A\u0E49\u0E21\u0E2D\u0E34\u0E10\u0E40\u0E02\u0E49\u0E21 (Hover)
+                        }
+                    }
+                }
+            }
+        }
+    <\/script>
+    <style>
+        body { background-color: #FAF6F0; } /* \u0E1A\u0E31\u0E07\u0E04\u0E31\u0E1A\u0E2A\u0E35\u0E1E\u0E37\u0E49\u0E19\u0E2B\u0E25\u0E31\u0E07\u0E43\u0E2B\u0E49\u0E40\u0E1B\u0E47\u0E19\u0E2A\u0E35\u0E04\u0E23\u0E35\u0E21 */
+        .day-btn { transition: all 0.2s ease; }
+        .day-in-range { background-color: #FCECE6; color: #CE5C3B; }
+        .day-selected { background-color: #E47251; color: white; border-radius: 9999px; position: relative; z-index: 10; box-shadow: 0 4px 6px -1px rgba(228, 114, 81, 0.3); }
+        .day-selected-start { border-top-right-radius: 0; border-bottom-right-radius: 0; }
+        .day-selected-end { border-top-left-radius: 0; border-bottom-left-radius: 0; }
+        html { scroll-behavior: smooth; }
+        .step-transition { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* \u0E0B\u0E48\u0E2D\u0E19 Scrollbar \u0E41\u0E19\u0E27\u0E19\u0E2D\u0E19\u0E02\u0E2D\u0E07 Stepper */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+  <script type="module" crossorigin src="/assets/customer-665WGFGI.js"><\/script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="/assets/qrcode-3etGfJGK.js">
 </head>
-<body>
+<body class="text-theme-text antialiased">
 
-  <!-- Top Navigation Bar -->
-  <nav class="navbar">
-    <div class="brand" id="brand-logo">
-      \u{1F3E1} <span>Little Bro</span> Booking
-    </div>
-    <div style="display: flex; align-items: center; gap: 0.75rem;">
-      <span id="admin-user-tag" style="display: none; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); background: var(--surface-subtle); padding: 0.35rem 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border);"></span>
-      <button type="button" class="btn btn-secondary btn-sm" id="btn-toggle-view">
-        \u{1F510} \u0E1C\u0E39\u0E49\u0E14\u0E39\u0E41\u0E25\u0E23\u0E30\u0E1A\u0E1A
-      </button>
-    </div>
-  </nav>
+    <!-- Navbar (\u0E43\u0E0A\u0E49\u0E2A\u0E35\u0E40\u0E02\u0E49\u0E21 theme-dark \u0E41\u0E1A\u0E1A\u0E40\u0E14\u0E35\u0E22\u0E27\u0E01\u0E31\u0E1A Sidebar Admin) -->
+    <nav class="bg-theme-dark shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <img src="/assets/logo-CFCADeUI.jpg" alt="Little Bro" class="h-12 object-contain rounded-md">
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="https://www.facebook.com/LittleBroMaeHongSon" target="_blank" rel="noopener noreferrer" class="bg-brand-500/20 text-brand-500 border border-brand-500/30 px-4 py-2 rounded-full text-sm font-medium hover:bg-brand-500 hover:text-white transition">\u0E15\u0E34\u0E14\u0E15\u0E48\u0E2D\u0E40\u0E23\u0E32</a>
+                    <a href="/admin" class="bg-brand-500/20 text-brand-500 border border-brand-500/30 px-4 py-2 rounded-full text-sm font-medium hover:bg-brand-500 hover:text-white transition">\u0E41\u0E2D\u0E14\u0E21\u0E34\u0E19</a>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-  <!-- ==================== VIEW 1: CUSTOMER BOOKING ==================== -->
-  <div id="customer-view" class="view-section active">
-    <header class="hero">
-      <h1>\u0E1E\u0E31\u0E01\u0E1C\u0E48\u0E2D\u0E19\u0E17\u0E48\u0E32\u0E21\u0E01\u0E25\u0E32\u0E07\u0E2A\u0E32\u0E22\u0E2B\u0E21\u0E2D\u0E01</h1>
-      <p>\u0E2A\u0E31\u0E21\u0E1C\u0E31\u0E2A\u0E2D\u0E32\u0E01\u0E32\u0E28\u0E1A\u0E23\u0E34\u0E2A\u0E38\u0E17\u0E18\u0E34\u0E4C\u0E41\u0E25\u0E30\u0E27\u0E34\u0E16\u0E35\u0E0A\u0E38\u0E21\u0E0A\u0E19\u0E17\u0E35\u0E48\u0E41\u0E21\u0E48\u0E2E\u0E48\u0E2D\u0E07\u0E2A\u0E2D\u0E19 \u0E08\u0E2D\u0E07\u0E15\u0E23\u0E07\u0E23\u0E32\u0E04\u0E32\u0E14\u0E35\u0E17\u0E35\u0E48\u0E2A\u0E38\u0E14\u0E1E\u0E23\u0E49\u0E2D\u0E21\u0E23\u0E31\u0E1A\u0E01\u0E32\u0E23\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E17\u0E31\u0E19\u0E17\u0E35</p>
+    <!-- Hero Section -->
+    <header class="relative bg-theme-dark h-[35vh] min-h-[280px] flex items-center justify-center border-b-4 border-brand-500">
+        <!-- \u0E43\u0E2A\u0E48 Overlay \u0E2A\u0E35\u0E19\u0E49\u0E33\u0E15\u0E32\u0E25\u0E2D\u0E38\u0E48\u0E19\u0E17\u0E31\u0E1A\u0E23\u0E39\u0E1B\u0E20\u0E32\u0E1E -->
+        <div class="absolute inset-0 bg-[#2A2320] opacity-70 z-10"></div>
+        <img src="/assets/20260718_093940-C5DF8Feg.jpg" alt="Little Bro Homestay" class="absolute inset-0 w-full h-full object-cover z-0">
+        
+        <div class="relative z-20 text-center px-4">
+            <h1 class="text-3xl md:text-5xl font-bold text-theme-bg mb-3">\u0E08\u0E2D\u0E07\u0E1A\u0E49\u0E32\u0E19\u0E1E\u0E31\u0E01 Little Bro</h1>
+            <p class="text-brand-100 font-light text-lg">\u0E40\u0E2D\u0E19\u0E01\u0E32\u0E22\u0E1E\u0E31\u0E01\u0E1C\u0E48\u0E2D\u0E19 \u0E43\u0E19\u0E1A\u0E23\u0E23\u0E22\u0E32\u0E01\u0E32\u0E28\u0E41\u0E2A\u0E19\u0E2D\u0E1A\u0E2D\u0E38\u0E48\u0E19</p>
+        </div>
     </header>
 
-    <main class="container">
-      <!-- Step 1: Search & Date Selection -->
-      <section class="card" id="search-section">
-        <h2 style="margin-bottom: 1.25rem;">\u{1F50D} 1. \u0E40\u0E25\u0E37\u0E2D\u0E01\u0E27\u0E31\u0E19\u0E17\u0E35\u0E48\u0E40\u0E02\u0E49\u0E32\u0E1E\u0E31\u0E01</h2>
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="check-in-date">\u0E27\u0E31\u0E19\u0E40\u0E0A\u0E47\u0E04\u0E2D\u0E34\u0E19 (Check-in)</label>
-            <input type="date" id="check-in-date" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label for="check-out-date">\u0E27\u0E31\u0E19\u0E40\u0E0A\u0E47\u0E04\u0E40\u0E2D\u0E32\u0E15\u0E4C (Check-out)</label>
-            <input type="date" id="check-out-date" class="form-control" required>
-          </div>
-          <div class="form-group">
-            <label for="guest-count">\u0E08\u0E33\u0E19\u0E27\u0E19\u0E1C\u0E39\u0E49\u0E40\u0E02\u0E49\u0E32\u0E1E\u0E31\u0E01</label>
-            <select id="guest-count" class="form-control">
-              <option value="1">1 \u0E17\u0E48\u0E32\u0E19</option>
-              <option value="2" selected>2 \u0E17\u0E48\u0E32\u0E19</option>
-              <option value="3">3 \u0E17\u0E48\u0E32\u0E19</option>
-              <option value="4">4 \u0E17\u0E48\u0E32\u0E19</option>
-            </select>
-          </div>
-        </div>
-        <button type="button" id="btn-check-availability" class="btn btn-primary btn-block">
-          \u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E2B\u0E49\u0E2D\u0E07\u0E27\u0E48\u0E32\u0E07\u0E41\u0E25\u0E30\u0E23\u0E32\u0E04\u0E32
-        </button>
-      </section>
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-30 pb-20">
+        <div class="flex flex-col lg:flex-row gap-8">
+            
+            <!-- Left Column: Booking Steps -->
+            <div class="w-full lg:w-2/3 bg-theme-card rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6 md:p-8 border border-theme-border">
+                
+                <!-- Stepper Progress Bar -->
+                <div id="stepper-ui" class="flex items-center justify-between mb-8 overflow-x-auto pb-4 border-b border-theme-border hide-scrollbar text-sm">
+                    <!-- JS \u0E08\u0E30\u0E2A\u0E23\u0E49\u0E32\u0E07 Stepper \u0E15\u0E23\u0E07\u0E19\u0E35\u0E49 -->
+                </div>
 
-      <!-- Step 2: Room Selection -->
-      <section class="card" id="rooms-section" style="display: none;">
-        <h2>\u{1F6CF}\uFE0F 2. \u0E40\u0E25\u0E37\u0E2D\u0E01\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01</h2>
-        <div id="rooms-container" class="rooms-grid">
-          <!-- Room cards dynamically populated -->
-        </div>
-      </section>
+                <!-- ================= STEP 1: \u0E40\u0E25\u0E37\u0E2D\u0E01\u0E27\u0E31\u0E19\u0E17\u0E35\u0E48 ================= -->
+                <div id="step-1" class="step-content step-transition">
+                    <h2 class="text-2xl font-bold text-theme-dark mb-2">1. \u0E40\u0E25\u0E37\u0E2D\u0E01\u0E27\u0E31\u0E19\u0E40\u0E02\u0E49\u0E32\u0E1E\u0E31\u0E01</h2>
+                    <p class="text-theme-muted text-sm mb-6">\u0E04\u0E25\u0E34\u0E01 2 \u0E04\u0E23\u0E31\u0E49\u0E07\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E27\u0E31\u0E19\u0E40\u0E0A\u0E47\u0E04\u0E2D\u0E34\u0E19\u0E41\u0E25\u0E30\u0E40\u0E0A\u0E47\u0E04\u0E40\u0E2D\u0E32\u0E15\u0E4C</p>
+                    
+                    <div class="max-w-md mx-auto my-4 border border-theme-border rounded-2xl p-6 bg-theme-card shadow-sm">
+                        <div class="flex justify-between items-center mb-6">
+                            <button onclick="changeMonth(-1)" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-theme-bg text-theme-text transition"><i class="fa-solid fa-chevron-left"></i></button>
+                            <h3 id="calendar-month-year" class="text-lg font-bold text-theme-dark"></h3>
+                            <button onclick="changeMonth(1)" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-theme-bg text-theme-text transition"><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                        <div class="grid grid-cols-7 text-center text-xs font-semibold text-theme-muted mb-2">
+                            <div>\u0E2D\u0E32</div><div>\u0E08</div><div>\u0E2D</div><div>\u0E1E</div><div>\u0E1E\u0E24</div><div>\u0E28</div><div>\u0E2A</div>
+                        </div>
+                         <div id="calendar-grid" class="grid grid-cols-7 gap-y-1 text-center" onmouseleave="clearHover()"></div>
+                     </div>
+                     <p id="date-error" class="hidden text-red-600 text-sm mt-3" role="alert"></p>
 
-      <!-- Step 3: Guest Info & Submit -->
-      <section class="card" id="booking-section" style="display: none;">
-        <h2>\u{1F4DD} 3. \u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E1C\u0E39\u0E49\u0E08\u0E2D\u0E07\u0E41\u0E25\u0E30\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19</h2>
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="guest-name">\u0E0A\u0E37\u0E48\u0E2D-\u0E19\u0E32\u0E21\u0E2A\u0E01\u0E38\u0E25 *</label>
-            <input type="text" id="guest-name" class="form-control" placeholder="\u0E40\u0E0A\u0E48\u0E19 \u0E2A\u0E21\u0E0A\u0E32\u0E22 \u0E43\u0E08\u0E14\u0E35" required>
-          </div>
-          <div class="form-group">
-            <label for="guest-phone">\u0E40\u0E1A\u0E2D\u0E23\u0E4C\u0E42\u0E17\u0E23\u0E28\u0E31\u0E1E\u0E17\u0E4C\u0E15\u0E34\u0E14\u0E15\u0E48\u0E2D *</label>
-            <input type="tel" id="guest-phone" class="form-control" placeholder="08XXXXXXXX" required>
-          </div>
-          <div class="form-group">
-            <label for="guest-email">\u0E2D\u0E35\u0E40\u0E21\u0E25 (\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E23\u0E31\u0E1A\u0E43\u0E1A\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07) *</label>
-            <input type="email" id="guest-email" class="form-control" placeholder="name@example.com" required>
-          </div>
-        </div>
+                     <div class="max-w-md mx-auto flex items-center justify-between p-4 border border-theme-border rounded-xl bg-theme-bg/40">
+                         <div>
+                             <span class="block text-sm font-semibold text-theme-dark">\u0E08\u0E33\u0E19\u0E27\u0E19\u0E1C\u0E39\u0E49\u0E40\u0E02\u0E49\u0E32\u0E1E\u0E31\u0E01</span>
+                             <span class="text-xs text-theme-muted">\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E08\u0E33\u0E19\u0E27\u0E19\u0E04\u0E19</span>
+                         </div>
+                         <div class="flex items-center gap-3">
+                             <button type="button" onclick="changeGuests(-1)" aria-label="\u0E25\u0E14\u0E08\u0E33\u0E19\u0E27\u0E19\u0E1C\u0E39\u0E49\u0E40\u0E02\u0E49\u0E32\u0E1E\u0E31\u0E01" class="w-9 h-9 rounded-full border border-theme-border bg-white text-theme-dark hover:border-brand-500 hover:text-brand-500 transition">\u2212</button>
+                             <span id="guest-count" class="min-w-8 text-center font-bold text-theme-dark">2</span>
+                             <button type="button" onclick="changeGuests(1)" aria-label="\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E08\u0E33\u0E19\u0E27\u0E19\u0E1C\u0E39\u0E49\u0E40\u0E02\u0E49\u0E32\u0E1E\u0E31\u0E01" class="w-9 h-9 rounded-full border border-theme-border bg-white text-theme-dark hover:border-brand-500 hover:text-brand-500 transition">+</button>
+                         </div>
+                     </div>
+                    
+                    <div class="flex justify-end mt-8 pt-6 border-t border-theme-border">
+                        <button onclick="goToStep(2)" id="btn-next-1" class="bg-brand-500 text-white px-8 py-3 rounded-xl font-medium hover:bg-brand-600 transition shadow-lg shadow-brand-500/20 disabled:opacity-50 disabled:shadow-none" disabled>\u0E16\u0E31\u0E14\u0E44\u0E1B <i class="fa-solid fa-arrow-right ml-2"></i></button>
+                    </div>
+                </div>
 
-        <div class="summary-box" id="quote-summary">
-          <div class="summary-row">
-            <span>\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01:</span>
-            <span id="summary-room-name">-</span>
-          </div>
-          <div class="summary-row">
-            <span>\u0E23\u0E30\u0E22\u0E30\u0E40\u0E27\u0E25\u0E32:</span>
-            <span id="summary-nights">-</span>
-          </div>
-          <div class="summary-row total">
-            <span>\u0E22\u0E2D\u0E14\u0E23\u0E27\u0E21\u0E0A\u0E33\u0E23\u0E30:</span>
-            <span id="summary-total-price">0 \u0E1A\u0E32\u0E17</span>
-          </div>
-        </div>
+                <!-- ================= STEP 2: \u0E1A\u0E23\u0E34\u0E01\u0E32\u0E23\u0E40\u0E2A\u0E23\u0E34\u0E21 ================= -->
+                <div id="step-2" class="step-content step-transition hidden">
+                    <h2 class="text-2xl font-bold text-theme-dark mb-2">2. \u0E1A\u0E23\u0E34\u0E01\u0E32\u0E23\u0E40\u0E2A\u0E23\u0E34\u0E21 (\u0E15\u0E31\u0E27\u0E40\u0E25\u0E37\u0E2D\u0E01)</h2>
+                    <p class="text-theme-muted text-sm mb-6">\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E04\u0E27\u0E32\u0E21\u0E2A\u0E30\u0E14\u0E27\u0E01\u0E2A\u0E1A\u0E32\u0E22\u0E43\u0E2B\u0E49\u0E01\u0E32\u0E23\u0E1E\u0E31\u0E01\u0E1C\u0E48\u0E2D\u0E19\u0E02\u0E2D\u0E07\u0E04\u0E38\u0E13</p>
+                    
+                     <div id="service-list" class="space-y-4">
+                         <p class="text-sm text-theme-muted">\u0E01\u0E33\u0E25\u0E31\u0E07\u0E42\u0E2B\u0E25\u0E14\u0E1A\u0E23\u0E34\u0E01\u0E32\u0E23\u0E40\u0E2A\u0E23\u0E34\u0E21...</p>
+                     </div>
 
-        <button type="button" id="btn-submit-booking" class="btn btn-primary btn-block" style="margin-top: 1.5rem;">
-          \u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07\u0E41\u0E25\u0E30\u0E14\u0E33\u0E40\u0E19\u0E34\u0E19\u0E01\u0E32\u0E23\u0E0A\u0E33\u0E23\u0E30\u0E40\u0E07\u0E34\u0E19
-        </button>
-      </section>
-    </main>
-  </div>
+                    <div class="flex justify-between mt-8 pt-6 border-t border-theme-border">
+                        <button onclick="goToStep(1)" class="text-theme-muted px-6 py-3 hover:bg-theme-bg rounded-xl transition font-medium">\u0E22\u0E49\u0E2D\u0E19\u0E01\u0E25\u0E31\u0E1A</button>
+                        <button onclick="goToStep(3)" class="bg-brand-500 text-white px-8 py-3 rounded-xl font-medium hover:bg-brand-600 transition shadow-lg shadow-brand-500/20">\u0E16\u0E31\u0E14\u0E44\u0E1B <i class="fa-solid fa-arrow-right ml-2"></i></button>
+                    </div>
+                </div>
 
-  <!-- ==================== VIEW 2: ADMIN DASHBOARD ==================== -->
-  <div id="admin-view" class="view-section">
-    <!-- 2.1 Admin Login Box -->
-    <div id="admin-login-box" class="login-box">
-      <h2 style="margin-bottom: 0.5rem;">\u{1F510} \u0E40\u0E02\u0E49\u0E32\u0E2A\u0E39\u0E48\u0E23\u0E30\u0E1A\u0E1A\u0E1C\u0E39\u0E49\u0E14\u0E39\u0E41\u0E25</h2>
-      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">\u0E01\u0E23\u0E38\u0E13\u0E32\u0E01\u0E23\u0E2D\u0E01 Username \u0E41\u0E25\u0E30 Password</p>
-      
-      <div id="login-error" style="display: none; background: #fee2e2; color: #dc2626; padding: 0.75rem; border-radius: var(--radius-sm); margin-bottom: 1rem; font-size: 0.85rem;"></div>
+                <!-- ================= STEP 3: \u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E25\u0E39\u0E01\u0E04\u0E49\u0E32 ================= -->
+                <div id="step-3" class="step-content step-transition hidden">
+                    <h2 class="text-2xl font-bold text-theme-dark mb-6">3. \u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E1C\u0E39\u0E49\u0E40\u0E02\u0E49\u0E32\u0E1E\u0E31\u0E01</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="col-span-2 md:col-span-1">
+                            <label class="block text-sm font-medium text-theme-text mb-1">\u0E0A\u0E37\u0E48\u0E2D - \u0E19\u0E32\u0E21\u0E2A\u0E01\u0E38\u0E25 *</label>
+                            <input type="text" id="g-name" required class="w-full px-4 py-3 rounded-xl border border-theme-border bg-theme-bg/50 focus:bg-white focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition" placeholder="\u0E23\u0E30\u0E1A\u0E38\u0E0A\u0E37\u0E48\u0E2D\u0E1C\u0E39\u0E49\u0E40\u0E02\u0E49\u0E32\u0E1E\u0E31\u0E01\u0E2B\u0E25\u0E31\u0E01">
+                        </div>
+                        <div class="col-span-2 md:col-span-1">
+                            <label class="block text-sm font-medium text-theme-text mb-1">\u0E40\u0E1A\u0E2D\u0E23\u0E4C\u0E42\u0E17\u0E23\u0E28\u0E31\u0E1E\u0E17\u0E4C *</label>
+                            <input type="tel" id="g-phone" required pattern="(?:0[0-9]{9}|\\+66[0-9]{9})" inputmode="tel" title="\u0E01\u0E23\u0E2D\u0E01 0 \u0E15\u0E32\u0E21\u0E14\u0E49\u0E27\u0E22\u0E15\u0E31\u0E27\u0E40\u0E25\u0E02 9 \u0E2B\u0E25\u0E31\u0E01 \u0E2B\u0E23\u0E37\u0E2D +66 \u0E15\u0E32\u0E21\u0E14\u0E49\u0E27\u0E22\u0E15\u0E31\u0E27\u0E40\u0E25\u0E02 9 \u0E2B\u0E25\u0E31\u0E01" class="w-full px-4 py-3 rounded-xl border border-theme-border bg-theme-bg/50 focus:bg-white focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition" placeholder="\u0E40\u0E1A\u0E2D\u0E23\u0E4C 10 \u0E2B\u0E25\u0E31\u0E01 \u0E2B\u0E23\u0E37\u0E2D +66 \u0E15\u0E32\u0E21\u0E14\u0E49\u0E27\u0E22\u0E40\u0E1A\u0E2D\u0E23\u0E4C 9 \u0E2B\u0E25\u0E31\u0E01">
+                        </div>
+                        <div class="col-span-2">
+                            <label class="block text-sm font-medium text-theme-text mb-1">\u0E2D\u0E35\u0E40\u0E21\u0E25</label>
+                            <input type="email" id="g-email" required pattern="[^\\s@]+@[^\\s@]+\\.com" title="\u0E01\u0E23\u0E38\u0E13\u0E32\u0E01\u0E23\u0E2D\u0E01\u0E2D\u0E35\u0E40\u0E21\u0E25\u0E17\u0E35\u0E48\u0E21\u0E35 @ \u0E41\u0E25\u0E30\u0E25\u0E07\u0E17\u0E49\u0E32\u0E22\u0E14\u0E49\u0E27\u0E22 .com" class="w-full px-4 py-3 rounded-xl border border-theme-border bg-theme-bg/50 focus:bg-white focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition" placeholder="\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E23\u0E31\u0E1A\u0E43\u0E1A\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07">
+                        </div>
+                        <div class="col-span-2">
+                            <label class="block text-sm font-medium text-theme-text mb-1">\u0E40\u0E27\u0E25\u0E32\u0E17\u0E35\u0E48\u0E04\u0E32\u0E14\u0E27\u0E48\u0E32\u0E08\u0E30\u0E21\u0E32\u0E16\u0E36\u0E07</label>
+                            <input type="time" id="g-arrival" class="w-full px-4 py-3 rounded-xl border border-theme-border bg-theme-bg/50 focus:bg-white focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition">
+                        </div>
+                        <div class="col-span-2">
+                            <label class="block text-sm font-medium text-theme-text mb-1">\u0E04\u0E33\u0E02\u0E2D\u0E1E\u0E34\u0E40\u0E28\u0E29 (\u0E16\u0E49\u0E32\u0E21\u0E35)</label>
+                            <textarea id="g-note" rows="3" class="w-full px-4 py-3 rounded-xl border border-theme-border bg-theme-bg/50 focus:bg-white focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition" placeholder="\u0E40\u0E0A\u0E48\u0E19 \u0E02\u0E2D\u0E40\u0E15\u0E35\u0E22\u0E07\u0E40\u0E2A\u0E23\u0E34\u0E21, \u0E16\u0E36\u0E07\u0E17\u0E35\u0E48\u0E1E\u0E31\u0E01\u0E14\u0E36\u0E01..."></textarea>
+                        </div>
+                    </div>
 
-      <form id="admin-login-form">
-        <div class="form-group" style="text-align: left; margin-bottom: 1rem;">
-          <label for="admin-username">\u0E0A\u0E37\u0E48\u0E2D\u0E1C\u0E39\u0E49\u0E43\u0E0A\u0E49\u0E07\u0E32\u0E19 (Username / Email)</label>
-          <input type="text" id="admin-username" class="form-control" placeholder="admin" required>
-        </div>
-        <div class="form-group" style="text-align: left; margin-bottom: 1.5rem;">
-          <label for="admin-password">\u0E23\u0E2B\u0E31\u0E2A\u0E1C\u0E48\u0E32\u0E19 (Password)</label>
-          <input type="password" id="admin-password" class="form-control" placeholder="\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022" required>
-        </div>
-        <button type="submit" id="btn-login-submit" class="btn btn-blue btn-block" style="padding: 0.75rem;">
-          \u0E40\u0E02\u0E49\u0E32\u0E2A\u0E39\u0E48\u0E23\u0E30\u0E1A\u0E1A
-        </button>
-      </form>
-    </div>
+                    <p id="guest-error" class="hidden text-red-600 text-sm mt-4" role="alert"></p>
 
-    <!-- 2.2 Admin Dashboard Content -->
-    <div id="admin-dashboard-box" class="admin-container" style="display: none;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-        <div>
-          <h2>\u{1F4CA} \u0E41\u0E14\u0E0A\u0E1A\u0E2D\u0E23\u0E4C\u0E14\u0E08\u0E31\u0E14\u0E01\u0E32\u0E23\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07</h2>
-          <p style="color: var(--text-muted); font-size: 0.9rem;">Little Bro Mae Hong Son</p>
-        </div>
-        <div style="display: flex; gap: 0.5rem;">
-          <button class="btn btn-secondary btn-sm" id="btn-refresh-bookings">\u{1F504} \u0E23\u0E35\u0E40\u0E1F\u0E23\u0E0A</button>
-          <button class="btn btn-danger btn-sm" id="btn-logout">\u0E2D\u0E2D\u0E01\u0E08\u0E32\u0E01\u0E23\u0E30\u0E1A\u0E1A</button>
-        </div>
-      </div>
+                    <div class="flex justify-between mt-8 pt-6 border-t border-theme-border">
+                        <button onclick="goToStep(2)" class="text-theme-muted px-6 py-3 hover:bg-theme-bg rounded-xl transition font-medium">\u0E22\u0E49\u0E2D\u0E19\u0E01\u0E25\u0E31\u0E1A</button>
+                        <button onclick="goToStep(4)" class="bg-brand-500 text-white px-8 py-3 rounded-xl font-medium hover:bg-brand-600 transition shadow-lg shadow-brand-500/20">\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25 <i class="fa-solid fa-arrow-right ml-2"></i></button>
+                    </div>
+                </div>
 
-      <!-- Stat Cards -->
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div style="color: var(--text-muted); font-size: 0.85rem;">\u0E23\u0E32\u0E22\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07\u0E17\u0E31\u0E49\u0E07\u0E2B\u0E21\u0E14</div>
-          <div class="stat-val" id="stat-total-bookings">0</div>
-        </div>
-        <div class="stat-card">
-          <div style="color: #b45309; font-size: 0.85rem;">\u0E23\u0E2D\u0E0A\u0E33\u0E23\u0E30 / \u0E23\u0E2D\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E25\u0E34\u0E1B</div>
-          <div class="stat-val" id="stat-pending-bookings" style="color: #b45309;">0</div>
-        </div>
-        <div class="stat-card">
-          <div style="color: var(--success); font-size: 0.85rem;">\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E41\u0E25\u0E49\u0E27 (Confirmed)</div>
-          <div class="stat-val" id="stat-confirmed-bookings" style="color: var(--success);">0</div>
-        </div>
-      </div>
+                <!-- ================= STEP 4: \u0E2A\u0E23\u0E38\u0E1B\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25 ================= -->
+                <div id="step-4" class="step-content step-transition hidden">
+                    <h2 class="text-2xl font-bold text-theme-dark mb-6">4. \u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E04\u0E27\u0E32\u0E21\u0E16\u0E39\u0E01\u0E15\u0E49\u0E2D\u0E07</h2>
+                    
+                    <div class="bg-theme-bg rounded-2xl p-6 mb-6 border border-theme-border">
+                        <h4 class="font-bold text-theme-dark mb-4 border-b border-theme-border/50 pb-3 flex items-center"><i class="fa-regular fa-user mr-2 text-brand-500"></i>\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E1C\u0E39\u0E49\u0E08\u0E2D\u0E07</h4>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div><span class="text-theme-muted block mb-1">\u0E0A\u0E37\u0E48\u0E2D:</span> <span id="sum-name" class="font-medium text-theme-dark">-</span></div>
+                            <div><span class="text-theme-muted block mb-1">\u0E40\u0E1A\u0E2D\u0E23\u0E4C\u0E42\u0E17\u0E23:</span> <span id="sum-phone" class="font-medium text-theme-dark">-</span></div>
+                            <div><span class="text-theme-muted block mb-1">\u0E2D\u0E35\u0E40\u0E21\u0E25:</span> <span id="sum-email" class="font-medium text-theme-text">-</span></div>
+                            <div><span class="text-theme-muted block mb-1">\u0E40\u0E27\u0E25\u0E32\u0E17\u0E35\u0E48\u0E04\u0E32\u0E14\u0E27\u0E48\u0E32\u0E08\u0E30\u0E16\u0E36\u0E07:</span> <span id="sum-arrival" class="font-medium text-theme-text">-</span></div>
+                            <div class="col-span-2"><span class="text-theme-muted block mb-1">\u0E2B\u0E21\u0E32\u0E22\u0E40\u0E2B\u0E15\u0E38:</span> <span id="sum-note" class="font-medium text-theme-text">-</span></div>
+                        </div>
+                    </div>
 
-      <!-- Bookings Table -->
-      <div class="card">
-        <h3 style="margin-bottom: 0.5rem;">\u{1F4CB} \u0E23\u0E32\u0E22\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01</h3>
-        <div class="table-responsive">
-          <table>
-            <thead>
-              <tr>
-                <th>\u0E23\u0E2B\u0E31\u0E2A\u0E08\u0E2D\u0E07</th>
-                <th>\u0E1C\u0E39\u0E49\u0E40\u0E02\u0E49\u0E32\u0E1E\u0E31\u0E01</th>
-                <th>\u0E40\u0E0A\u0E47\u0E04\u0E2D\u0E34\u0E19 - \u0E40\u0E0A\u0E47\u0E04\u0E40\u0E2D\u0E32\u0E15\u0E4C</th>
-                <th>\u0E22\u0E2D\u0E14\u0E23\u0E27\u0E21</th>
-                <th>\u0E2A\u0E16\u0E32\u0E19\u0E30</th>
-                <th>\u0E08\u0E31\u0E14\u0E01\u0E32\u0E23</th>
-              </tr>
-            </thead>
-            <tbody id="bookings-table-body">
-              <tr>
-                <td colspan="6" style="text-align: center; color: var(--text-muted);">\u0E01\u0E33\u0E25\u0E31\u0E07\u0E42\u0E2B\u0E25\u0E14\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25...</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
+                    <div class="bg-brand-50 text-theme-dark p-4 rounded-xl text-sm flex items-start gap-3 mb-6 border border-brand-100">
+                        <i class="fa-solid fa-circle-info mt-1 text-brand-500"></i>
+                        <p>\u0E01\u0E23\u0E38\u0E13\u0E32\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E43\u0E2B\u0E49\u0E04\u0E23\u0E1A\u0E16\u0E49\u0E27\u0E19 \u0E2B\u0E32\u0E01\u0E16\u0E39\u0E01\u0E15\u0E49\u0E2D\u0E07\u0E41\u0E25\u0E49\u0E27 \u0E01\u0E23\u0E38\u0E13\u0E32\u0E01\u0E14\u0E14\u0E33\u0E40\u0E19\u0E34\u0E19\u0E01\u0E32\u0E23\u0E0A\u0E33\u0E23\u0E30\u0E40\u0E07\u0E34\u0E19\u0E43\u0E19\u0E02\u0E31\u0E49\u0E19\u0E15\u0E2D\u0E19\u0E16\u0E31\u0E14\u0E44\u0E1B\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07</p>
+                    </div>
 
-  <!-- Customer Payment Modal -->
-  <div class="modal" id="payment-modal">
-    <div class="modal-content">
-      <h3>\u0E0A\u0E33\u0E23\u0E30\u0E40\u0E07\u0E34\u0E19\u0E1C\u0E48\u0E32\u0E19 PromptPay</h3>
-      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">\u0E2A\u0E41\u0E01\u0E19 QR Code \u0E14\u0E49\u0E32\u0E19\u0E25\u0E48\u0E32\u0E07\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E0A\u0E33\u0E23\u0E30\u0E40\u0E07\u0E34\u0E19\u0E21\u0E31\u0E14\u0E08\u0E33</p>
-      <img id="qr-image" class="qr-img" src="" alt="PromptPay QR Code">
-      <div style="font-size: 1.4rem; font-weight: 700; color: var(--primary);" id="modal-amount">0.00 THB</div>
-      <p style="font-size: 0.85rem; color: #dc2626; margin: 0.5rem 0;">\u0E01\u0E23\u0E38\u0E13\u0E32\u0E0A\u0E33\u0E23\u0E30\u0E20\u0E32\u0E22\u0E43\u0E19 15 \u0E19\u0E32\u0E17\u0E35</p>
-      
-      <div style="margin-top: 1rem; text-align: left;">
-        <label style="font-size: 0.85rem; font-weight: 600;">\u0E41\u0E19\u0E1A\u0E2A\u0E25\u0E34\u0E1B\u0E01\u0E32\u0E23\u0E42\u0E2D\u0E19\u0E40\u0E07\u0E34\u0E19 (Slip):</label>
-        <input type="file" id="slip-file" accept="image/*" class="form-control" style="margin-top: 0.4rem;">
-      </div>
+                    <div class="flex justify-between mt-8 pt-6 border-t border-theme-border">
+                        <button onclick="goToStep(3)" class="text-theme-muted px-6 py-3 hover:bg-theme-bg rounded-xl transition font-medium">\u0E41\u0E01\u0E49\u0E44\u0E02\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25</button>
+                         <button onclick="submitBooking()" id="submit-booking" class="bg-brand-500 text-white px-8 py-3 rounded-xl font-medium hover:bg-brand-600 transition shadow-lg shadow-brand-500/20">\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E41\u0E25\u0E30\u0E44\u0E1B\u0E0A\u0E33\u0E23\u0E30\u0E40\u0E07\u0E34\u0E19 <i class="fa-solid fa-lock ml-2"></i></button>
+                     </div>
+                     <p id="booking-error" class="hidden text-red-600 text-sm mt-4" role="alert"></p>
+                </div>
 
-      <div style="display: flex; gap: 0.5rem; margin-top: 1.25rem;">
-        <button type="button" id="btn-upload-slip" class="btn btn-primary" style="flex: 1;">\u0E2D\u0E31\u0E1B\u0E42\u0E2B\u0E25\u0E14\u0E2A\u0E25\u0E34\u0E1B</button>
-        <button type="button" id="btn-close-payment-modal" class="btn btn-secondary">\u0E1B\u0E34\u0E14</button>
-      </div>
-    </div>
-  </div>
+                <!-- ================= STEP 5: \u0E2B\u0E19\u0E49\u0E32\u0E0A\u0E33\u0E23\u0E30\u0E40\u0E07\u0E34\u0E19 ================= -->
+                <div id="step-5" class="step-content step-transition hidden text-center">
+                    <h2 class="text-2xl font-bold text-theme-dark mb-2">5. \u0E0A\u0E33\u0E23\u0E30\u0E40\u0E07\u0E34\u0E19</h2>
+                    <p class="text-theme-muted text-sm mb-8">\u0E2A\u0E41\u0E01\u0E19 QR Code \u0E14\u0E49\u0E32\u0E19\u0E25\u0E48\u0E32\u0E07\u0E14\u0E49\u0E27\u0E22\u0E41\u0E2D\u0E1B\u0E18\u0E19\u0E32\u0E04\u0E32\u0E23\u0E43\u0E14\u0E01\u0E47\u0E44\u0E14\u0E49</p>
+                    
+                     <div class="inline-block border-2 border-theme-border rounded-2xl p-6 bg-white shadow-sm mb-6">
+                         <div id="payment-qr" class="w-48 h-48 mx-auto mb-4 flex items-center justify-center text-sm text-theme-muted">\u0E01\u0E33\u0E25\u0E31\u0E07\u0E42\u0E2B\u0E25\u0E14 QR...</div>
+                         <p class="font-bold text-lg text-theme-dark">\u0E22\u0E2D\u0E14\u0E0A\u0E33\u0E23\u0E30: <span id="pay-amount" class="text-brand-500">\u0E01\u0E33\u0E25\u0E31\u0E07\u0E42\u0E2B\u0E25\u0E14...</span></p>
+                         <p id="payment-booking-code" class="text-sm text-theme-muted mt-1"></p>
+                     </div>
 
-  <!-- Admin Slip Viewer Modal -->
-  <div class="modal" id="slip-modal">
-    <div class="modal-content">
-      <h3 style="margin-bottom: 1rem;">\u0E2A\u0E25\u0E34\u0E1B\u0E01\u0E32\u0E23\u0E42\u0E2D\u0E19\u0E40\u0E07\u0E34\u0E19</h3>
-      <div id="slip-image-container" style="min-height: 200px; display: flex; align-items: center; justify-content: center;">
-        <img id="slip-img" src="" alt="Slip Image" style="max-width: 100%; max-height: 400px; border-radius: var(--radius-sm);">
-      </div>
-      <button class="btn btn-secondary btn-block" id="btn-close-slip-modal" style="margin-top: 1.25rem;">\u0E1B\u0E34\u0E14</button>
-    </div>
-  </div>
+                     <div class="mt-8 pt-8 border-t border-theme-border">
+                         <label class="block text-sm font-medium text-theme-text mb-2 text-left" for="slip-file">\u0E41\u0E19\u0E1A\u0E2A\u0E25\u0E34\u0E1B\u0E01\u0E32\u0E23\u0E42\u0E2D\u0E19\u0E40\u0E07\u0E34\u0E19</label>
+                         <input id="slip-file" type="file" accept="image/jpeg,image/png,image/webp" class="block w-full text-sm text-theme-muted mb-4">
+                         <button onclick="submitSlip()" id="upload-slip" class="bg-brand-500 text-white px-6 py-2.5 rounded-xl font-medium hover:bg-brand-600 transition disabled:opacity-50" disabled>\u0E2A\u0E48\u0E07\u0E2A\u0E25\u0E34\u0E1B\u0E43\u0E2B\u0E49\u0E41\u0E2D\u0E14\u0E21\u0E34\u0E19</button>
+                         <p id="payment-error" class="hidden text-red-600 text-sm mt-3" role="alert"></p>
+                     </div>
+                </div>
 
-  <script>
-    // --- Unified API Call: Uses google.script.run inside GAS, with fetch fallback ---
-    let authToken = localStorage.getItem('littlebro_admin_token');
-    let selectedRoomId = null;
-    let currentBookingCode = null;
+                <!-- ================= STEP 6 (Success): \u0E2A\u0E33\u0E40\u0E23\u0E47\u0E08 ================= -->
+                <div id="step-6-success" class="step-content step-transition hidden text-center py-8">
+                    <div class="w-20 h-20 bg-[#E8F3EF] rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa-solid fa-check text-4xl text-[#2D8D6F]"></i>
+                    </div>
+                     <h2 class="text-3xl font-bold text-theme-dark mb-2">\u0E44\u0E14\u0E49\u0E23\u0E31\u0E1A\u0E2A\u0E25\u0E34\u0E1B\u0E41\u0E25\u0E49\u0E27</h2>
+                     <p class="text-theme-muted mb-6">\u0E17\u0E35\u0E21\u0E07\u0E32\u0E19\u0E08\u0E30\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E41\u0E25\u0E30\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E20\u0E32\u0E22\u0E43\u0E19 1 \u0E0A\u0E21.</p>
+                    
+                    <div class="bg-theme-bg rounded-2xl p-6 max-w-sm mx-auto mb-8 border border-theme-border text-left">
+                        <p class="text-sm text-theme-muted mb-1">\u0E2B\u0E21\u0E32\u0E22\u0E40\u0E25\u0E02\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07 (Booking ID)</p>
+                         <p id="booking-result-code" class="text-2xl font-bold text-theme-dark mb-4 tracking-wider"></p>
+                        <div class="border-t border-theme-border pt-4 flex justify-between items-center">
+                            <span class="text-theme-muted text-sm">\u0E2A\u0E16\u0E32\u0E19\u0E30:</span>
+                             <span class="font-bold text-[#2D8D6F] bg-[#E8F3EF] px-3 py-1 rounded-full text-sm">\u0E23\u0E2D\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A</span>
+                        </div>
+                    </div>
 
-    const DEFAULT_GAS_URL = 'https://script.google.com/macros/s/AKfycbzf82bXZ3wKzZgAJNKtOtecYsWdr9p8Z5pn4ZbP9XE61Ca1t1Rn7JCqXNCY28p5rKdk/exec';
+                    <button onclick="location.reload()" class="bg-brand-500 text-white px-8 py-3 rounded-xl font-medium hover:bg-brand-600 transition shadow-lg shadow-brand-500/20">\u0E01\u0E25\u0E31\u0E1A\u0E2A\u0E39\u0E48\u0E2B\u0E19\u0E49\u0E32\u0E2B\u0E25\u0E31\u0E01</button>
+                </div>
 
-    function getApiEndpoint() {
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.has('apiUrl')) {
-        const custom = urlParams.get('apiUrl');
-        localStorage.setItem('littlebro_gas_url', custom);
-        return custom;
-      }
-      return window.GAS_API_URL || localStorage.getItem('littlebro_gas_url') || (window.location.hostname.includes('script.google.com') ? '' : DEFAULT_GAS_URL);
-    }
+                <!-- ================= STEP 6 (Fail): \u0E44\u0E21\u0E48\u0E1C\u0E48\u0E32\u0E19 ================= -->
+                <div id="step-6-fail" class="step-content step-transition hidden text-center py-8">
+                    <div class="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa-solid fa-xmark text-4xl text-red-500"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-theme-dark mb-2">\u0E0A\u0E33\u0E23\u0E30\u0E40\u0E07\u0E34\u0E19\u0E44\u0E21\u0E48\u0E2A\u0E33\u0E40\u0E23\u0E47\u0E08</h2>
+                    <p class="text-theme-muted mb-6">\u0E2D\u0E32\u0E08\u0E40\u0E01\u0E34\u0E14\u0E02\u0E49\u0E2D\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14\u0E08\u0E32\u0E01\u0E23\u0E30\u0E1A\u0E1A\u0E18\u0E19\u0E32\u0E04\u0E32\u0E23 \u0E2B\u0E23\u0E37\u0E2D\u0E2B\u0E21\u0E14\u0E40\u0E27\u0E25\u0E32\u0E17\u0E33\u0E23\u0E32\u0E22\u0E01\u0E32\u0E23</p>
+                    
+                    <div class="bg-red-50/50 text-red-800 p-4 rounded-xl max-w-sm mx-auto mb-8 border border-red-100 text-sm leading-relaxed">
+                        \u0E44\u0E21\u0E48\u0E15\u0E49\u0E2D\u0E07\u0E01\u0E31\u0E07\u0E27\u0E25! \u0E23\u0E30\u0E1A\u0E1A\u0E22\u0E31\u0E07\u0E25\u0E47\u0E2D\u0E04\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01\u0E44\u0E27\u0E49\u0E43\u0E2B\u0E49\u0E04\u0E38\u0E13 \u0E2B\u0E32\u0E01\u0E04\u0E38\u0E13\u0E42\u0E2D\u0E19\u0E40\u0E07\u0E34\u0E19\u0E41\u0E25\u0E49\u0E27\u0E41\u0E15\u0E48\u0E23\u0E30\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E02\u0E36\u0E49\u0E19 \u0E01\u0E23\u0E38\u0E13\u0E32\u0E15\u0E34\u0E14\u0E15\u0E48\u0E2D\u0E41\u0E2D\u0E14\u0E21\u0E34\u0E19\u0E1E\u0E23\u0E49\u0E2D\u0E21\u0E41\u0E19\u0E1A\u0E2A\u0E25\u0E34\u0E1B\u0E04\u0E23\u0E31\u0E1A
+                    </div>
 
-    function apiCall(action, payload = {}) {
-      const req = { action, token: authToken, ...payload };
-      return new Promise((resolve, reject) => {
-        if (typeof google !== 'undefined' && google.script && google.script.run) {
-          google.script.run
-            .withSuccessHandler((res) => {
-              try { resolve(typeof res === 'string' ? JSON.parse(res) : res); }
-              catch (e) { resolve(res); }
-            })
-            .withFailureHandler((err) => {
-              console.error('GAS Error:', err);
-              reject(err);
-            })
-            .apiDispatch(JSON.stringify(req));
-        } else {
-          // Fallback for Vercel / external browser hosting
-          const endpoint = getApiEndpoint();
-          fetch(endpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify(req)
-          })
-          .then(r => r.json())
-          .then(resolve)
-          .catch(reject);
-        }
-      });
-    }
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <button onclick="goToStep(5)" class="bg-white border border-theme-border text-theme-text px-6 py-3 rounded-xl font-medium hover:bg-theme-bg transition">\u0E25\u0E2D\u0E07\u0E0A\u0E33\u0E23\u0E30\u0E43\u0E2B\u0E21\u0E48\u0E2D\u0E35\u0E01\u0E04\u0E23\u0E31\u0E49\u0E07</button>
+                        <a href="#" class="bg-[#00B900] text-white px-6 py-3 rounded-xl font-medium hover:bg-[#00a000] transition flex items-center justify-center gap-2 shadow-lg shadow-[#00B900]/20">
+                            <i class="fa-brands fa-line text-xl"></i> \u0E15\u0E34\u0E14\u0E15\u0E48\u0E2D\u0E41\u0E2D\u0E14\u0E21\u0E34\u0E19 (Line)
+                        </a>
+                    </div>
+                </div>
 
-    // --- View Navigation (SPA - No Page Reload) ---
-    let currentView = 'customer';
-
-    function setView(viewName) {
-      currentView = viewName;
-      const custView = document.getElementById('customer-view');
-      const adminView = document.getElementById('admin-view');
-      const toggleBtn = document.getElementById('btn-toggle-view');
-      const userTag = document.getElementById('admin-user-tag');
-
-      if (viewName === 'admin') {
-        custView.classList.remove('active');
-        adminView.classList.add('active');
-        toggleBtn.innerText = '\u{1F3E0} \u0E2B\u0E19\u0E49\u0E32\u0E08\u0E2D\u0E07\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01';
-        toggleBtn.className = 'btn btn-primary btn-sm';
-
-        if (authToken) {
-          showAdminDashboard();
-        } else {
-          showAdminLogin();
-        }
-      } else {
-        adminView.classList.remove('active');
-        custView.classList.add('active');
-        toggleBtn.innerText = '\u{1F510} \u0E1C\u0E39\u0E49\u0E14\u0E39\u0E41\u0E25\u0E23\u0E30\u0E1A\u0E1A';
-        toggleBtn.className = 'btn btn-secondary btn-sm';
-        userTag.style.display = 'none';
-      }
-    }
-
-    document.getElementById('btn-toggle-view').addEventListener('click', () => {
-      setView(currentView === 'customer' ? 'admin' : 'customer');
-    });
-    document.getElementById('brand-logo').addEventListener('click', () => {
-      setView('customer');
-    });
-
-    // Check if URL parameter requested admin page
-    try {
-      const urlParams = new URLSearchParams(window.location.search);
-      if (urlParams.get('page') === 'admin' || urlParams.get('view') === 'admin') {
-        setView('admin');
-      }
-    } catch {}
-
-    // --- Customer Booking Flow ---
-    const today = new Date();
-    const tomorrow = new Date(today); tomorrow.setDate(tomorrow.getDate() + 1);
-    const dayAfter = new Date(today); dayAfter.setDate(dayAfter.getDate() + 2);
-    const fmt = (d) => d.toISOString().split('T')[0];
-
-    document.getElementById('check-in-date').value = fmt(tomorrow);
-    document.getElementById('check-out-date').value = fmt(dayAfter);
-
-    document.getElementById('btn-check-availability').addEventListener('click', async () => {
-      const checkIn = document.getElementById('check-in-date').value;
-      const checkOut = document.getElementById('check-out-date').value;
-
-      if (!checkIn || !checkOut || checkIn >= checkOut) {
-        alert('\u0E01\u0E23\u0E38\u0E13\u0E32\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E27\u0E31\u0E19\u0E40\u0E0A\u0E47\u0E04\u0E2D\u0E34\u0E19\u0E41\u0E25\u0E30\u0E40\u0E0A\u0E47\u0E04\u0E40\u0E2D\u0E32\u0E15\u0E4C\u0E43\u0E2B\u0E49\u0E16\u0E39\u0E01\u0E15\u0E49\u0E2D\u0E07');
-        return;
-      }
-
-      const btn = document.getElementById('btn-check-availability');
-      btn.innerText = '\u0E01\u0E33\u0E25\u0E31\u0E07\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E2B\u0E49\u0E2D\u0E07\u0E27\u0E48\u0E32\u0E07...';
-      btn.disabled = true;
-
-      try {
-        const catalogRes = await apiCall('getCatalog');
-        if (catalogRes && catalogRes.ok) {
-          renderRooms(catalogRes.data?.rooms || []);
-          document.getElementById('rooms-section').style.display = 'block';
-          document.getElementById('rooms-section').scrollIntoView({ behavior: 'smooth' });
-        } else {
-          alert('\u0E44\u0E21\u0E48\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E14\u0E36\u0E07\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01\u0E44\u0E14\u0E49');
-        }
-      } catch (err) {
-        alert('\u0E40\u0E01\u0E34\u0E14\u0E02\u0E49\u0E2D\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14\u0E43\u0E19\u0E01\u0E32\u0E23\u0E40\u0E0A\u0E37\u0E48\u0E2D\u0E21\u0E15\u0E48\u0E2D');
-      } finally {
-        btn.innerText = '\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A\u0E2B\u0E49\u0E2D\u0E07\u0E27\u0E48\u0E32\u0E07\u0E41\u0E25\u0E30\u0E23\u0E32\u0E04\u0E32';
-        btn.disabled = false;
-      }
-    });
-
-    function renderRooms(rooms) {
-      const container = document.getElementById('rooms-container');
-      container.innerHTML = '';
-      rooms.forEach((room) => {
-        const card = document.createElement('div');
-        card.className = 'room-card';
-        card.id = \`room-\${room.id}\`;
-        card.innerHTML = \`
-          <div>
-            <div class="room-name">\${room.name_th || room.name_en || room.id}</div>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">\u0E23\u0E2D\u0E07\u0E23\u0E31\u0E1A\u0E1C\u0E39\u0E49\u0E40\u0E02\u0E49\u0E32\u0E1E\u0E31\u0E01 \${room.max_guests || 2} \u0E17\u0E48\u0E32\u0E19</p>
-          </div>
-          <div class="room-price">
-            \u0E3F\${(room.base_price || 0).toLocaleString()} <small>/ \u0E04\u0E37\u0E19</small>
-          </div>
-        \`;
-        card.addEventListener('click', () => selectRoom(room));
-        container.appendChild(card);
-      });
-    }
-
-    async function selectRoom(room) {
-      selectedRoomId = room.id;
-      document.querySelectorAll('.room-card').forEach(c => c.classList.remove('selected'));
-      document.getElementById(\`room-\${room.id}\`)?.classList.add('selected');
-
-      const checkIn = document.getElementById('check-in-date').value;
-      const checkOut = document.getElementById('check-out-date').value;
-      const guests = Number(document.getElementById('guest-count').value);
-
-      const quoteRes = await apiCall('quote', { roomId: room.id, checkIn, checkOut, guests });
-      if (quoteRes && quoteRes.ok) {
-        document.getElementById('summary-room-name').innerText = room.name_th || room.id;
-        document.getElementById('summary-nights').innerText = \`\${checkIn} \u0E16\u0E36\u0E07 \${checkOut} (\${quoteRes.data.nights} \u0E04\u0E37\u0E19)\`;
-        document.getElementById('summary-total-price').innerText = \`\u0E3F\${(quoteRes.data.total_price || 0).toLocaleString()}\`;
-
-        document.getElementById('booking-section').style.display = 'block';
-        document.getElementById('booking-section').scrollIntoView({ behavior: 'smooth' });
-      } else {
-        alert('\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01\u0E44\u0E21\u0E48\u0E27\u0E48\u0E32\u0E07\u0E43\u0E19\u0E27\u0E31\u0E19\u0E17\u0E35\u0E48\u0E40\u0E25\u0E37\u0E2D\u0E01');
-      }
-    }
-
-    document.getElementById('btn-submit-booking').addEventListener('click', async () => {
-      const name = document.getElementById('guest-name').value.trim();
-      const phone = document.getElementById('guest-phone').value.trim();
-      const email = document.getElementById('guest-email').value.trim();
-
-      if (!name || !phone || !email) {
-        alert('\u0E01\u0E23\u0E38\u0E13\u0E32\u0E01\u0E23\u0E2D\u0E01\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25\u0E1C\u0E39\u0E49\u0E08\u0E2D\u0E07\u0E43\u0E2B\u0E49\u0E04\u0E23\u0E1A\u0E16\u0E49\u0E27\u0E19');
-        return;
-      }
-
-      const payload = {
-        roomId: selectedRoomId,
-        checkIn: document.getElementById('check-in-date').value,
-        checkOut: document.getElementById('check-out-date').value,
-        guests: Number(document.getElementById('guest-count').value),
-        guest: { name, phone, email }
-      };
-
-      const res = await apiCall('createBooking', payload);
-      if (res && res.ok) {
-        currentBookingCode = res.data.booking_code;
-        showPaymentModal(res.data);
-      } else {
-        alert('\u0E44\u0E21\u0E48\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E2A\u0E23\u0E49\u0E32\u0E07\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07\u0E44\u0E14\u0E49: ' + (res?.error?.message || '\u0E2B\u0E49\u0E2D\u0E07\u0E1E\u0E31\u0E01\u0E2D\u0E32\u0E08\u0E16\u0E39\u0E01\u0E08\u0E2D\u0E07\u0E41\u0E25\u0E49\u0E27'));
-      }
-    });
-
-    function showPaymentModal(data) {
-      const modal = document.getElementById('payment-modal');
-      document.getElementById('modal-amount').innerText = \`\u0E3F\${(data.amount_to_pay || data.total_price || 0).toLocaleString()} THB\`;
-      if (data.qr_image_url) {
-        document.getElementById('qr-image').src = data.qr_image_url;
-      }
-      modal.classList.add('active');
-    }
-    document.getElementById('btn-close-payment-modal').addEventListener('click', () => {
-      document.getElementById('payment-modal').classList.remove('active');
-    });
-
-    // --- Admin Flow (User + Pass) ---
-    function showAdminLogin() {
-      document.getElementById('admin-login-box').style.display = 'block';
-      document.getElementById('admin-dashboard-box').style.display = 'none';
-      document.getElementById('admin-user-tag').style.display = 'none';
-    }
-
-    function showAdminDashboard() {
-      document.getElementById('admin-login-box').style.display = 'none';
-      document.getElementById('admin-dashboard-box').style.display = 'block';
-      const userTag = document.getElementById('admin-user-tag');
-      const savedUser = localStorage.getItem('littlebro_admin_user') || 'Admin';
-      userTag.innerText = \`\u{1F464} \${savedUser}\`;
-      userTag.style.display = 'inline-block';
-      loadBookings();
-    }
-
-    document.getElementById('admin-login-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const username = document.getElementById('admin-username').value.trim();
-      const password = document.getElementById('admin-password').value.trim();
-      const errorDiv = document.getElementById('login-error');
-      const submitBtn = document.getElementById('btn-login-submit');
-
-      errorDiv.style.display = 'none';
-      submitBtn.innerText = '\u0E01\u0E33\u0E25\u0E31\u0E07\u0E15\u0E23\u0E27\u0E08\u0E2A\u0E2D\u0E1A...';
-      submitBtn.disabled = true;
-
-      try {
-        const res = await apiCall('adminLogin', { username, password });
-        if (res && res.ok && res.data?.token) {
-          authToken = res.data.token;
-          localStorage.setItem('littlebro_admin_token', authToken);
-          localStorage.setItem('littlebro_admin_user', res.data.user?.username || username);
-          showAdminDashboard();
-        } else {
-          errorDiv.innerText = res?.error?.message || '\u0E0A\u0E37\u0E48\u0E2D\u0E1C\u0E39\u0E49\u0E43\u0E0A\u0E49\u0E2B\u0E23\u0E37\u0E2D\u0E23\u0E2B\u0E31\u0E2A\u0E1C\u0E48\u0E32\u0E19\u0E44\u0E21\u0E48\u0E16\u0E39\u0E01\u0E15\u0E49\u0E2D\u0E07';
-          errorDiv.style.display = 'block';
-        }
-      } catch (err) {
-        errorDiv.innerText = '\u0E44\u0E21\u0E48\u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E40\u0E0A\u0E37\u0E48\u0E2D\u0E21\u0E15\u0E48\u0E2D\u0E40\u0E0B\u0E34\u0E23\u0E4C\u0E1F\u0E40\u0E27\u0E2D\u0E23\u0E4C\u0E44\u0E14\u0E49';
-        errorDiv.style.display = 'block';
-      } finally {
-        submitBtn.innerText = '\u0E40\u0E02\u0E49\u0E32\u0E2A\u0E39\u0E48\u0E23\u0E30\u0E1A\u0E1A';
-        submitBtn.disabled = false;
-      }
-    });
-
-    document.getElementById('btn-logout').addEventListener('click', async () => {
-      try { await apiCall('adminLogout'); } catch {}
-      authToken = null;
-      localStorage.removeItem('littlebro_admin_token');
-      localStorage.removeItem('littlebro_admin_user');
-      showAdminLogin();
-    });
-
-    async function loadBookings() {
-      const tbody = document.getElementById('bookings-table-body');
-      tbody.innerHTML = '<tr><td colspan="6" style="text-align: center;">\u0E01\u0E33\u0E25\u0E31\u0E07\u0E42\u0E2B\u0E25\u0E14\u0E02\u0E49\u0E2D\u0E21\u0E39\u0E25...</td></tr>';
-
-      try {
-        const res = await apiCall('listBookings');
-        if (res && res.ok) {
-          const bookings = res.data?.bookings || [];
-          renderBookings(bookings);
-          document.getElementById('stat-total-bookings').innerText = bookings.length;
-          document.getElementById('stat-pending-bookings').innerText = bookings.filter(b => b.status === 'PENDING').length;
-          document.getElementById('stat-confirmed-bookings').innerText = bookings.filter(b => b.status === 'CONFIRMED').length;
-        } else {
-          if (res?.error?.code === 'FORBIDDEN') {
-            alert('Session \u0E2B\u0E21\u0E14\u0E2D\u0E32\u0E22\u0E38 \u0E01\u0E23\u0E38\u0E13\u0E32\u0E40\u0E02\u0E49\u0E32\u0E2A\u0E39\u0E48\u0E23\u0E30\u0E1A\u0E1A\u0E43\u0E2B\u0E21\u0E48');
-            document.getElementById('btn-logout').click();
-            return;
-          }
-          tbody.innerHTML = \`<tr><td colspan="6" style="text-align: center; color: red;">\u0E02\u0E49\u0E2D\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14: \${res?.error?.message || ''}</td></tr>\`;
-        }
-      } catch (err) {
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: red;">\u0E40\u0E0A\u0E37\u0E48\u0E2D\u0E21\u0E15\u0E48\u0E2D\u0E25\u0E49\u0E21\u0E40\u0E2B\u0E25\u0E27</td></tr>';
-      }
-    }
-
-    function renderBookings(bookings) {
-      const tbody = document.getElementById('bookings-table-body');
-      tbody.innerHTML = '';
-
-      if (bookings.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">\u0E44\u0E21\u0E48\u0E21\u0E35\u0E23\u0E32\u0E22\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07</td></tr>';
-        return;
-      }
-
-      bookings.forEach(b => {
-        const tr = document.createElement('tr');
-        const badgeClass = b.status === 'CONFIRMED' ? 'badge-confirmed' : b.status === 'CANCELLED' ? 'badge-cancelled' : 'badge-pending';
-        const code = b.code || b.booking_code || '-';
-        tr.innerHTML = \`
-          <td><strong>\${code}</strong></td>
-          <td>\${b.guest_name || '-'}<br><small style="color: var(--text-muted);">\${b.guest_phone || ''}</small></td>
-          <td>\${b.check_in} \u0E16\u0E36\u0E07 \${b.check_out}</td>
-          <td>\u0E3F\${(Number(b.total_price) || 0).toLocaleString()}</td>
-          <td><span class="badge \${badgeClass}">\${b.status}</span></td>
-          <td>
-            <div style="display: flex; gap: 0.35rem;">
-              \${b.has_slip ? \`<button class="btn btn-secondary btn-sm" onclick="viewSlip('\${code}')">\u0E14\u0E39\u0E2A\u0E25\u0E34\u0E1B</button>\` : ''}
-              \${b.status !== 'CONFIRMED' ? \`<button class="btn btn-success btn-sm" onclick="confirmBooking('\${code}')">\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19</button>\` : ''}
-              \${b.status !== 'CANCELLED' ? \`<button class="btn btn-danger btn-sm" onclick="cancelBooking('\${code}')">\u0E22\u0E01\u0E40\u0E25\u0E34\u0E01</button>\` : ''}
             </div>
-          </td>
-        \`;
-        tbody.appendChild(tr);
-      });
-    }
 
-    window.viewSlip = async (bookingCode) => {
-      const res = await apiCall('getSlip', { bookingCode });
-      if (res && res.ok && res.data?.slip_url) {
-        document.getElementById('slip-img').src = res.data.slip_url;
-        document.getElementById('slip-modal').classList.add('active');
-      } else {
-        alert('\u0E44\u0E21\u0E48\u0E1E\u0E1A\u0E23\u0E39\u0E1B\u0E2A\u0E25\u0E34\u0E1B\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E23\u0E32\u0E22\u0E01\u0E32\u0E23\u0E19\u0E35\u0E49');
-      }
-    };
+            <!-- Right Column: Summary Card (Sticky) -->
+            <div class="w-full lg:w-1/3">
+                <div class="bg-theme-card rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6 border border-theme-border sticky top-24" id="summary-card">
+                    <h3 class="text-lg font-bold text-theme-dark mb-4 pb-4 border-b border-theme-border">\u0E2A\u0E23\u0E38\u0E1B\u0E22\u0E2D\u0E14\u0E23\u0E27\u0E21</h3>
+                    
+                    <!-- Date Info -->
+                     <div class="flex justify-between items-center bg-brand-50 p-4 rounded-xl mb-6 border border-brand-100/50">
+                        <div>
+                            <span class="block text-xs text-brand-500 font-medium mb-1">\u0E40\u0E0A\u0E47\u0E04\u0E2D\u0E34\u0E19</span>
+                            <span id="display-checkin" class="font-semibold text-theme-dark">\u2014</span>
+                        </div>
+                        <i class="fa-solid fa-arrow-right text-brand-300"></i>
+                        <div class="text-right">
+                            <span class="block text-xs text-brand-500 font-medium mb-1">\u0E40\u0E0A\u0E47\u0E04\u0E40\u0E2D\u0E32\u0E15\u0E4C</span>
+                            <span id="display-checkout" class="font-semibold text-theme-dark">\u2014</span>
+                         </div>
+                     </div>
 
-    window.confirmBooking = async (bookingCode) => {
-      if (!confirm(\`\u0E15\u0E49\u0E2D\u0E07\u0E01\u0E32\u0E23\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07 \${bookingCode} \u0E43\u0E0A\u0E48\u0E2B\u0E23\u0E37\u0E2D\u0E44\u0E21\u0E48?\`)) return;
-      const res = await apiCall('confirmBooking', { bookingCode });
-      if (res && res.ok) {
-        alert('\u0E22\u0E37\u0E19\u0E22\u0E31\u0E19\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07\u0E2A\u0E33\u0E40\u0E23\u0E47\u0E08');
-        loadBookings();
-      } else {
-        alert('\u0E40\u0E01\u0E34\u0E14\u0E02\u0E49\u0E2D\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14: ' + (res?.error?.message || ''));
-      }
-    };
+                     <div class="flex justify-between items-center mb-6 text-sm">
+                         <span class="text-theme-muted">\u0E1C\u0E39\u0E49\u0E40\u0E02\u0E49\u0E32\u0E1E\u0E31\u0E01</span>
+                         <span class="font-semibold text-theme-dark"><span id="display-guests">2</span> \u0E04\u0E19</span>
+                     </div>
+                    
+                    <!-- Pricing Details -->
+                    <div id="pricing-details" class="space-y-3 mb-6 text-sm">
+                        <p class="text-theme-muted">\u0E40\u0E25\u0E37\u0E2D\u0E01\u0E27\u0E31\u0E19\u0E40\u0E1E\u0E37\u0E48\u0E2D\u0E14\u0E39\u0E23\u0E32\u0E04\u0E32</p>
+                    </div>
 
-    window.cancelBooking = async (bookingCode) => {
-      if (!confirm(\`\u0E15\u0E49\u0E2D\u0E07\u0E01\u0E32\u0E23\u0E22\u0E01\u0E40\u0E25\u0E34\u0E01\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07 \${bookingCode} \u0E43\u0E0A\u0E48\u0E2B\u0E23\u0E37\u0E2D\u0E44\u0E21\u0E48?\`)) return;
-      const res = await apiCall('cancelBooking', { bookingCode, reason: 'Admin cancelled' });
-      if (res && res.ok) {
-        alert('\u0E22\u0E01\u0E40\u0E25\u0E34\u0E01\u0E01\u0E32\u0E23\u0E08\u0E2D\u0E07\u0E2A\u0E33\u0E40\u0E23\u0E47\u0E08');
-        loadBookings();
-      } else {
-        alert('\u0E40\u0E01\u0E34\u0E14\u0E02\u0E49\u0E2D\u0E1C\u0E34\u0E14\u0E1E\u0E25\u0E32\u0E14: ' + (res?.error?.message || ''));
-      }
-    };
+                    <!-- Total -->
+                    <div class="border-t border-theme-border pt-4 mt-4 bg-theme-bg/30 -mx-6 -mb-6 p-6 rounded-b-3xl">
+                        <div class="flex justify-between items-end">
+                            <span class="font-bold text-theme-dark">\u0E22\u0E2D\u0E14\u0E2A\u0E38\u0E17\u0E18\u0E34</span>
+                            <span class="text-2xl font-bold text-brand-500">\u0E3F<span id="display-total">0</span></span>
+                        </div>
+                        <p class="text-right text-xs text-theme-muted mt-1">\u0E23\u0E27\u0E21\u0E20\u0E32\u0E29\u0E35\u0E21\u0E39\u0E25\u0E04\u0E48\u0E32\u0E40\u0E1E\u0E34\u0E48\u0E21\u0E41\u0E25\u0E49\u0E27</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-    document.getElementById('btn-close-slip-modal').addEventListener('click', () => {
-      document.getElementById('slip-modal').classList.remove('active');
-    });
-
-    document.getElementById('btn-refresh-bookings').addEventListener('click', loadBookings);
-  <\/script>
+    <!-- JS: Logic (\u0E40\u0E2B\u0E21\u0E37\u0E2D\u0E19\u0E40\u0E14\u0E34\u0E21\u0E40\u0E1B\u0E4A\u0E30) -->
 </body>
 </html>
 `;
@@ -1471,24 +997,24 @@ var _App = (() => {
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">\r
   <style>\r
     :root {\r
-      --primary: #3b82f6;\r
-      --primary-hover: #2563eb;\r
-      --success: #10b981;\r
+      --primary: #E47251;\r
+      --primary-hover: #CE5C3B;\r
+      --success: #2D8D6F;\r
       --danger: #ef4444;\r
       --warning: #f59e0b;\r
-      --dark: #0f172a;\r
+      --dark: #1B1715;\r
       --surface: #ffffff;\r
-      --surface-subtle: #f8fafc;\r
-      --border: #e2e8f0;\r
-      --text: #1e293b;\r
-      --text-muted: #64748b;\r
-      --radius: 12px;\r
+      --surface-subtle: #FAF6F0;\r
+      --border: #EAE1D9;\r
+      --text: #3A312E;\r
+      --text-muted: #8A7F7A;\r
+      --radius: 16px;\r
       --radius-sm: 8px;\r
       --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);\r
-      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);\r
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.08);\r
     }\r
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Prompt', sans-serif; }\r
-    body { background-color: #f8fafc; color: var(--text); min-height: 100vh; }\r
+    body { background-color: #FAF6F0; color: var(--text); min-height: 100vh; }\r
 \r
     /* Login Screen */\r
     .login-wrapper {\r
@@ -1496,7 +1022,7 @@ var _App = (() => {
       display: flex;\r
       align-items: center;\r
       justify-content: center;\r
-      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);\r
+      background: #1B1715;\r
       padding: 1.5rem;\r
     }\r
     .login-card {\r
@@ -1507,6 +1033,7 @@ var _App = (() => {
       max-width: 420px;\r
       box-shadow: var(--shadow-lg);\r
       text-align: center;\r
+      border: 1px solid var(--border);\r
     }\r
     .login-title { font-size: 1.5rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; }\r
     .login-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2rem; }\r
@@ -1516,9 +1043,10 @@ var _App = (() => {
     .dashboard-wrapper.active { display: flex; }\r
 \r
     .dash-nav {\r
-      background: white;\r
-      border-bottom: 1px solid var(--border);\r
-      padding: 1rem 2rem;\r
+      background: #1B1715;\r
+      color: white;\r
+      border-bottom: 1px solid #2d2623;\r
+      padding: 0.85rem 2rem;\r
       display: flex;\r
       justify-content: space-between;\r
       align-items: center;\r
@@ -1526,7 +1054,7 @@ var _App = (() => {
       top: 0;\r
       z-index: 50;\r
     }\r
-    .dash-brand { font-size: 1.25rem; font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 0.5rem; }\r
+    .dash-brand { font-size: 1.25rem; font-weight: 700; color: white; display: flex; align-items: center; gap: 0.5rem; }\r
     .user-badge { font-size: 0.85rem; background: var(--surface-subtle); padding: 0.4rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); }\r
 \r
     .dash-content { max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; width: 100%; }\r
