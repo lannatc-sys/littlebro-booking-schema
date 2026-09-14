@@ -66,6 +66,14 @@ function apiDispatch(jsonString) { return _App.apiDispatch(jsonString); }
 
   const stats = fs.statSync('get.gs');
   console.log(`Build completed: get.gs (${(stats.size / 1024).toFixed(1)} KB)`);
+
+  // Prepare static web files for Vercel hosting in public/
+  if (!fs.existsSync('public')) {
+    fs.mkdirSync('public', { recursive: true });
+  }
+  fs.copyFileSync('src/views/index.html', 'public/index.html');
+  fs.copyFileSync('src/views/admin.html', 'public/admin.html');
+  console.log('Exported static files to public/ (index.html, admin.html) for Vercel deployment.');
 }
 
 build().catch((err) => {
