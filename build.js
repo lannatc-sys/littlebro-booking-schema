@@ -6,6 +6,21 @@ import path from 'path';
 const htmlPlugin = {
   name: 'html-loader',
   setup(build) {
+    build.onResolve({ filter: /\.html\?raw$/ }, (args) => {
+      return {
+        path: path.resolve(args.resolveDir, args.path.replace(/\?raw$/, '')),
+        namespace: 'html-raw',
+      };
+    });
+
+    build.onLoad({ filter: /.*/, namespace: 'html-raw' }, async (args) => {
+      const text = await fs.promises.readFile(args.path, 'utf8');
+      return {
+        contents: `export default ${JSON.stringify(text)};`,
+        loader: 'js',
+      };
+    });
+
     build.onLoad({ filter: /\.html$/ }, async (args) => {
       const text = await fs.promises.readFile(args.path, 'utf8');
       return {

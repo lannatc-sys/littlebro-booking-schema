@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Little Bro Booking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --success: #10b981;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --dark: #0f172a;
+      --surface: #ffffff;
+      --surface-subtle: #f8fafc;
+      --border: #e2e8f0;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Prompt', sans-serif; }
+    body { background-color: #f8fafc; color: var(--text); min-height: 100vh; }
+
+    /* Login Screen */
+    .login-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      padding: 1.5rem;
+    }
+    .login-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+    }
+    .login-title { font-size: 1.5rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; }
+    .login-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2rem; }
+
+    /* Dashboard Layout */
+    .dashboard-wrapper { display: none; min-height: 100vh; flex-direction: column; }
+    .dashboard-wrapper.active { display: flex; }
+
+    .dash-nav {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .dash-brand { font-size: 1.25rem; font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 0.5rem; }
+    .user-badge { font-size: 0.85rem; background: var(--surface-subtle); padding: 0.4rem 0.8rem; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+
+    .dash-content { max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem; width: 100%; }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: white;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+    .stat-val { font-size: 1.8rem; font-weight: 700; margin-top: 0.5rem; color: var(--dark); }
+
+    .card {
+      background: white;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+    .card-title { font-size: 1.15rem; font-weight: 700; color: var(--dark); }
+
+    .table-responsive { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left; }
+    th { background: var(--surface-subtle); padding: 0.75rem 1rem; font-weight: 600; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+    td { padding: 0.85rem 1rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    tr:hover { background: #f1f5f9; }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .badge-pending { background: #fef3c7; color: #b45309; }
+    .badge-confirmed { background: #d1fae5; color: #065f46; }
+    .badge-cancelled { background: #fee2e2; color: #991b1b; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s;
+    }
+    .btn-sm { padding: 0.35rem 0.75rem; font-size: 0.8rem; }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-success { background: var(--success); color: white; }
+    .btn-danger { background: var(--danger); color: white; }
+    .btn-secondary { background: #e2e8f0; color: var(--text); }
+    .btn-block { width: 100%; }
+
+    .form-group { margin-bottom: 1.25rem; text-align: left; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--text-muted); }
+    .form-control {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      outline: none;
+      background: var(--surface-subtle);
+    }
+    .form-control:focus { border-color: var(--primary); background: white; }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal.active { display: flex; }
+    .modal-content {
+      background: white;
+      border-radius: var(--radius);
+      padding: 2rem;
+      max-width: 500px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Login View -->
+  <div class="login-wrapper" id="login-view">
+    <div class="login-card">
+      <div class="login-title">🔐 เข้าสู่ระบบผู้ดูแล</div>
+      <div class="login-desc">ระบบจัดการการจอง Little Bro Mae Hong Son</div>
+
+      <div id="login-error" style="display: none; background: #fee2e2; color: #dc2626; padding: 0.75rem; border-radius: var(--radius-sm); margin-bottom: 1rem; font-size: 0.85rem;"></div>
+
+      <form id="admin-login-form">
+        <div class="form-group">
+          <label for="admin-username">ชื่อผู้ใช้งาน (Username / Email)</label>
+          <input type="text" id="admin-username" class="form-control" placeholder="เช่น admin" required autofocus>
+        </div>
+        <div class="form-group">
+          <label for="admin-password">รหัสผ่าน (Password)</label>
+          <input type="password" id="admin-password" class="form-control" placeholder="••••••••" required>
+        </div>
+        <button type="submit" id="btn-login-submit" class="btn btn-primary btn-block" style="padding: 0.85rem;">
+          เข้าสู่ระบบ
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Main Dashboard View -->
+  <div class="dashboard-wrapper" id="dashboard-view">
+    <nav class="dash-nav">
+      <div class="dash-brand">
+        📊 <span>Little Bro Admin</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <span class="user-badge" id="current-user-display">👤 Admin</span>
+        <button class="btn btn-secondary btn-sm" id="btn-logout">ออกจากระบบ</button>
+      </div>
+    </nav>
+
+    <main class="dash-content">
+      <!-- Stats Overview -->
+      <section class="stats-grid">
+        <div class="stat-card">
+          <div style="color: var(--text-muted); font-size: 0.85rem;">รายการจองทั้งหมด</div>
+          <div class="stat-val" id="stat-total-bookings">0</div>
+        </div>
+        <div class="stat-card">
+          <div style="color: #b45309; font-size: 0.85rem;">รอชำระ / รอตรวจสลิป</div>
+          <div class="stat-val" id="stat-pending-bookings" style="color: #b45309;">0</div>
+        </div>
+        <div class="stat-card">
+          <div style="color: var(--success); font-size: 0.85rem;">ยืนยันแล้ว (Confirmed)</div>
+          <div class="stat-val" id="stat-confirmed-bookings" style="color: var(--success);">0</div>
+        </div>
+      </section>
+
+      <!-- Bookings Table -->
+      <section class="card">
+        <div class="card-header">
+          <div class="card-title">📋 รายการจองห้องพักล่าสุด</div>
+          <button class="btn btn-secondary btn-sm" id="btn-refresh-bookings">🔄 รีเฟรช</button>
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>รหัสจอง</th>
+                <th>ผู้เข้าพัก</th>
+                <th>เช็คอิน - เช็คเอาต์</th>
+                <th>ยอดรวม</th>
+                <th>สถานะ</th>
+                <th>จัดการ</th>
+              </tr>
+            </thead>
+            <tbody id="bookings-table-body">
+              <tr>
+                <td colspan="6" style="text-align: center; color: var(--text-muted);">กำลังโหลดข้อมูล...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Slip Viewer Modal -->
+  <div class="modal" id="slip-modal">
+    <div class="modal-content" style="text-align: center;">
+      <h3 style="margin-bottom: 1rem;">สลิปการโอนเงิน</h3>
+      <div id="slip-image-container" style="min-height: 200px; display: flex; align-items: center; justify-content: center;">
+        <img id="slip-img" src="" alt="Slip Image" style="max-width: 100%; max-height: 450px; border-radius: var(--radius-sm);">
+      </div>
+      <button class="btn btn-secondary btn-block" id="btn-close-slip-modal" style="margin-top: 1.5rem;">ปิด</button>
+    </div>
+  </div>
+
+  <script>
+    let authToken = localStorage.getItem('littlebro_admin_token');
+
+    async function apiCall(action, payload = {}) {
+      const res = await fetch('', {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({ action, token: authToken, ...payload })
+      });
+      return await res.json();
+    }
+
+    // Check existing session
+    if (authToken) {
+      showDashboard();
+    }
+
+    // Handle Login
+    document.getElementById('admin-login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('admin-username').value.trim();
+      const password = document.getElementById('admin-password').value.trim();
+      const errorDiv = document.getElementById('login-error');
+      const submitBtn = document.getElementById('btn-login-submit');
+
+      errorDiv.style.display = 'none';
+      submitBtn.innerText = 'กำลังตรวจสอบ...';
+      submitBtn.disabled = true;
+
+      try {
+        const res = await apiCall('adminLogin', { username, password });
+        if (res.ok && res.data?.token) {
+          authToken = res.data.token;
+          localStorage.setItem('littlebro_admin_token', authToken);
+          localStorage.setItem('littlebro_admin_user', res.data.user?.username || username);
+          showDashboard();
+        } else {
+          errorDiv.innerText = res.error?.message || 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง';
+          errorDiv.style.display = 'block';
+        }
+      } catch (err) {
+        errorDiv.innerText = 'ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้';
+        errorDiv.style.display = 'block';
+      } finally {
+        submitBtn.innerText = 'เข้าสู่ระบบ';
+        submitBtn.disabled = false;
+      }
+    });
+
+    // Handle Logout
+    document.getElementById('btn-logout').addEventListener('click', async () => {
+      try { await apiCall('adminLogout'); } catch {}
+      authToken = null;
+      localStorage.removeItem('littlebro_admin_token');
+      localStorage.removeItem('littlebro_admin_user');
+      location.reload();
+    });
+
+    function showDashboard() {
+      document.getElementById('login-view').style.display = 'none';
+      document.getElementById('dashboard-view').classList.add('active');
+      const savedUser = localStorage.getItem('littlebro_admin_user') || 'Admin';
+      document.getElementById('current-user-display').innerText = `👤 ${savedUser}`;
+      loadBookings();
+    }
+
+    async function loadBookings() {
+      const tbody = document.getElementById('bookings-table-body');
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align: center;">กำลังโหลดข้อมูล...</td></tr>';
+
+      try {
+        const res = await apiCall('listBookings');
+        if (res.ok) {
+          const bookings = res.data?.bookings || [];
+          renderBookings(bookings);
+          updateStats(bookings);
+        } else {
+          if (res.error?.code === 'FORBIDDEN') {
+            alert('Session หมดอายุ กรุณาเข้าสู่ระบบใหม่');
+            document.getElementById('btn-logout').click();
+            return;
+          }
+          tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: red;">เกิดข้อผิดพลาด: ${res.error?.message || ''}</td></tr>`;
+        }
+      } catch (err) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: red;">เชื่อมต่อเซิร์ฟเวอร์ล้มเหลว</td></tr>';
+      }
+    }
+
+    function updateStats(bookings) {
+      document.getElementById('stat-total-bookings').innerText = bookings.length;
+      document.getElementById('stat-pending-bookings').innerText = bookings.filter(b => b.status === 'PENDING').length;
+      document.getElementById('stat-confirmed-bookings').innerText = bookings.filter(b => b.status === 'CONFIRMED').length;
+    }
+
+    function renderBookings(bookings) {
+      const tbody = document.getElementById('bookings-table-body');
+      tbody.innerHTML = '';
+
+      if (bookings.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">ไม่มีรายการจองในขณะนี้</td></tr>';
+        return;
+      }
+
+      bookings.forEach(b => {
+        const tr = document.createElement('tr');
+        const badgeClass = b.status === 'CONFIRMED' ? 'badge-confirmed' : b.status === 'CANCELLED' ? 'badge-cancelled' : 'badge-pending';
+        
+        tr.innerHTML = `
+          <td><strong>${b.code || b.booking_code || '-'}</strong></td>
+          <td>${b.guest_name || '-'}<br><small style="color: var(--text-muted);">${b.guest_phone || ''}</small></td>
+          <td>${b.check_in} ถึง ${b.check_out}</td>
+          <td>฿${(Number(b.total_price) || 0).toLocaleString()}</td>
+          <td><span class="badge ${badgeClass}">${b.status}</span></td>
+          <td>
+            <div style="display: flex; gap: 0.35rem;">
+              ${b.has_slip ? `<button class="btn btn-secondary btn-sm" onclick="viewSlip('${b.code || b.booking_code}')">ดูสลิป</button>` : ''}
+              ${b.status !== 'CONFIRMED' ? `<button class="btn btn-success btn-sm" onclick="confirmBooking('${b.code || b.booking_code}')">ยืนยัน</button>` : ''}
+              ${b.status !== 'CANCELLED' ? `<button class="btn btn-danger btn-sm" onclick="cancelBooking('${b.code || b.booking_code}')">ยกเลิก</button>` : ''}
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    window.viewSlip = async (bookingCode) => {
+      const res = await apiCall('getSlip', { bookingCode });
+      if (res.ok && res.data?.slip_url) {
+        document.getElementById('slip-img').src = res.data.slip_url;
+        document.getElementById('slip-modal').classList.add('active');
+      } else {
+        alert('ไม่พบรูปสลิปสำหรับรายการนี้');
+      }
+    };
+
+    window.confirmBooking = async (bookingCode) => {
+      if (!confirm(`ต้องการยืนยันการจอง ${bookingCode} ใช่หรือไม่?`)) return;
+      const res = await apiCall('confirmBooking', { bookingCode });
+      if (res.ok) {
+        alert('ยืนยันการจองสำเร็จ');
+        loadBookings();
+      } else {
+        alert('เกิดข้อผิดพลาด: ' + (res.error?.message || ''));
+      }
+    };
+
+    window.cancelBooking = async (bookingCode) => {
+      if (!confirm(`ต้องการยกเลิกการจอง ${bookingCode} ใช่หรือไม่?`)) return;
+      const res = await apiCall('cancelBooking', { bookingCode, reason: 'Admin cancelled' });
+      if (res.ok) {
+        alert('ยกเลิกการจองสำเร็จ');
+        loadBookings();
+      } else {
+        alert('เกิดข้อผิดพลาด: ' + (res.error?.message || ''));
+      }
+    };
+
+    document.getElementById('btn-close-slip-modal').addEventListener('click', () => {
+      document.getElementById('slip-modal').classList.remove('active');
+    });
+
+    document.getElementById('btn-refresh-bookings').addEventListener('click', loadBookings);
+  </script>
+</body>
+</html>

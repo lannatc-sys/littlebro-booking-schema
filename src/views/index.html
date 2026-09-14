@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Little Bro Mae Hong Son - จองห้องพักออนไลน์</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #10b981;
+      --primary-hover: #059669;
+      --primary-light: #d1fae5;
+      --dark: #0f172a;
+      --surface: #ffffff;
+      --surface-subtle: #f8fafc;
+      --border: #e2e8f0;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --radius: 16px;
+      --radius-sm: 8px;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Prompt', sans-serif; }
+    body { background-color: #f1f5f9; color: var(--text); line-height: 1.6; min-height: 100vh; }
+    
+    .navbar {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand { font-size: 1.35rem; font-weight: 700; color: var(--dark); display: flex; align-items: center; gap: 0.5rem; }
+    .brand span { color: var(--primary); }
+    .nav-actions a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s;
+    }
+    .nav-actions a:hover { color: var(--primary); background: var(--primary-light); }
+
+    .hero {
+      background: linear-gradient(135deg, #064e3b 0%, #0f172a 100%);
+      color: white;
+      padding: 4rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+    }
+    .hero h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.5px; }
+    .hero p { font-size: 1.15rem; color: #cbd5e1; max-width: 600px; margin: 0 auto; font-weight: 300; }
+
+    .container { max-width: 1100px; margin: -3rem auto 4rem; padding: 0 1.5rem; position: relative; z-index: 10; }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
+    .form-control {
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: var(--surface-subtle);
+    }
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+      background: var(--surface);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s;
+    }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); }
+    .btn-block { width: 100%; }
+
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .room-card {
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .room-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: var(--shadow); }
+    .room-card.selected { border-color: var(--primary); background: #f0fdf4; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25); }
+    .room-name { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--dark); }
+    .room-price { font-size: 1.4rem; font-weight: 700; color: var(--primary); margin: 0.5rem 0; }
+    .room-price small { font-size: 0.85rem; font-weight: 400; color: var(--text-muted); }
+
+    .summary-box {
+      background: var(--surface-subtle);
+      border-radius: var(--radius-sm);
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      border: 1px solid var(--border);
+    }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.95rem; }
+    .summary-row.total { font-size: 1.3rem; font-weight: 700; color: var(--primary); border-top: 1px dashed var(--border); padding-top: 0.75rem; margin-top: 0.75rem; }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    .modal.active { display: flex; }
+    .modal-content {
+      background: white;
+      border-radius: var(--radius);
+      padding: 2rem;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+    .qr-img { width: 220px; height: 220px; margin: 1rem auto; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0.5rem; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="brand">
+      🏡 <span>Little Bro</span> Booking
+    </div>
+    <div class="nav-actions">
+      <a href="?page=admin" id="nav-admin-link">🔐 ผู้ดูแลระบบ</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <h1>พักผ่อนท่ามกลางสายหมอก</h1>
+    <p>สัมผัสอากาศบริสุทธิ์และวิถีชุมชนที่แม่ฮ่องสอน จองตรงราคาดีที่สุดพร้อมรับการยืนยันทันที</p>
+  </header>
+
+  <main class="container">
+    <!-- Step 1: Search & Date Selection -->
+    <section class="card" id="search-section">
+      <h2 style="margin-bottom: 1.25rem;">🔍 1. เลือกวันที่เข้าพัก</h2>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="check-in-date">วันเช็คอิน (Check-in)</label>
+          <input type="date" id="check-in-date" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="check-out-date">วันเช็คเอาต์ (Check-out)</label>
+          <input type="date" id="check-out-date" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="guest-count">จำนวนผู้เข้าพัก</label>
+          <select id="guest-count" class="form-control">
+            <option value="1">1 ท่าน</option>
+            <option value="2" selected>2 ท่าน</option>
+            <option value="3">3 ท่าน</option>
+            <option value="4">4 ท่าน</option>
+          </select>
+        </div>
+      </div>
+      <button type="button" id="btn-check-availability" class="btn btn-primary btn-block">
+        ตรวจสอบห้องว่างและราคา
+      </button>
+    </section>
+
+    <!-- Step 2: Room Selection -->
+    <section class="card" id="rooms-section" style="display: none;">
+      <h2>🛏️ 2. เลือกห้องพัก</h2>
+      <div id="rooms-container" class="rooms-grid">
+        <!-- Room cards rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- Step 3: Booking Form & Confirmation -->
+    <section class="card" id="booking-section" style="display: none;">
+      <h2>📝 3. ข้อมูลผู้จองและยืนยัน</h2>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="guest-name">ชื่อ-นามสกุล *</label>
+          <input type="text" id="guest-name" class="form-control" placeholder="เช่น สมชาย ใจดี" required>
+        </div>
+        <div class="form-group">
+          <label for="guest-phone">เบอร์โทรศัพท์ติดต่อ *</label>
+          <input type="tel" id="guest-phone" class="form-control" placeholder="08XXXXXXXX" required>
+        </div>
+        <div class="form-group">
+          <label for="guest-email">อีเมล (สำหรับรับใบยืนยันการจอง) *</label>
+          <input type="email" id="guest-email" class="form-control" placeholder="name@example.com" required>
+        </div>
+      </div>
+
+      <div class="summary-box" id="quote-summary">
+        <div class="summary-row">
+          <span>ห้องพัก:</span>
+          <span id="summary-room-name">-</span>
+        </div>
+        <div class="summary-row">
+          <span>ระยะเวลา:</span>
+          <span id="summary-nights">-</span>
+        </div>
+        <div class="summary-row total">
+          <span>ยอดรวมชำระ:</span>
+          <span id="summary-total-price">0 บาท</span>
+        </div>
+      </div>
+
+      <button type="button" id="btn-submit-booking" class="btn btn-primary btn-block" style="margin-top: 1.5rem;">
+        ยืนยันการจองและดำเนินการชำระเงิน
+      </button>
+    </section>
+  </main>
+
+  <!-- Payment Modal -->
+  <div class="modal" id="payment-modal">
+    <div class="modal-content">
+      <h3>ชำระเงินผ่าน PromptPay</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">
+        สแกน QR Code ด้านล่างเพื่อชำระเงินมัดจำ
+      </p>
+      <img id="qr-image" class="qr-img" src="" alt="PromptPay QR Code">
+      <div style="font-size: 1.4rem; font-weight: 700; color: var(--primary);" id="modal-amount">0.00 THB</div>
+      <p style="font-size: 0.85rem; color: #dc2626; margin: 0.5rem 0;" id="qr-expiry-text">กรุณาชำระภายใน 15 นาที</p>
+      
+      <div style="margin-top: 1rem; text-align: left;">
+        <label style="font-size: 0.85rem; font-weight: 600;">แนบสลิปการโอนเงิน (Slip):</label>
+        <input type="file" id="slip-file" accept="image/*" class="form-control" style="margin-top: 0.4rem;">
+      </div>
+
+      <button type="button" id="btn-upload-slip" class="btn btn-primary btn-block" style="margin-top: 1rem;">
+        อัปโหลดสลิปยืนยัน
+      </button>
+    </div>
+  </div>
+
+  <script>
+    let selectedRoomId = null;
+    let currentBookingCode = null;
+
+    // Set default dates: today + 1 and today + 2
+    const today = new Date();
+    const tomorrow = new Date(today); tomorrow.setDate(tomorrow.getDate() + 1);
+    const dayAfter = new Date(today); dayAfter.setDate(dayAfter.getDate() + 2);
+
+    const fmt = (d) => d.toISOString().split('T')[0];
+    document.getElementById('check-in-date').value = fmt(tomorrow);
+    document.getElementById('check-out-date').value = fmt(dayAfter);
+
+    async function apiCall(action, payload = {}) {
+      const res = await fetch('', {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({ action, ...payload })
+      });
+      return await res.json();
+    }
+
+    document.getElementById('btn-check-availability').addEventListener('click', async () => {
+      const checkIn = document.getElementById('check-in-date').value;
+      const checkOut = document.getElementById('check-out-date').value;
+
+      if (!checkIn || !checkOut || checkIn >= checkOut) {
+        alert('กรุณาเลือกวันเช็คอินและเช็คเอาต์ให้ถูกต้อง');
+        return;
+      }
+
+      const btn = document.getElementById('btn-check-availability');
+      btn.innerText = 'กำลังตรวจสอบห้องว่าง...';
+      btn.disabled = true;
+
+      try {
+        const catalogRes = await apiCall('getCatalog');
+        if (catalogRes.ok) {
+          renderRooms(catalogRes.data.rooms || []);
+          document.getElementById('rooms-section').style.display = 'block';
+          document.getElementById('rooms-section').scrollIntoView({ behavior: 'smooth' });
+        } else {
+          alert('ไม่สามารถดึงข้อมูลห้องพักได้: ' + (catalogRes.error?.message || ''));
+        }
+      } catch (err) {
+        alert('เกิดข้อผิดพลาดในการเชื่อมต่อ');
+      } finally {
+        btn.innerText = 'ตรวจสอบห้องว่างและราคา';
+        btn.disabled = false;
+      }
+    });
+
+    function renderRooms(rooms) {
+      const container = document.getElementById('rooms-container');
+      container.innerHTML = '';
+
+      rooms.forEach((room) => {
+        const card = document.createElement('div');
+        card.className = 'room-card';
+        card.id = `room-${room.id}`;
+        card.innerHTML = `
+          <div>
+            <div class="room-name">${room.name_th || room.name_en || room.id}</div>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">รองรับผู้เข้าพัก ${room.max_guests || 2} ท่าน</p>
+          </div>
+          <div class="room-price">
+            ฿${(room.base_price || 0).toLocaleString()} <small>/ คืน</small>
+          </div>
+        `;
+        card.addEventListener('click', () => selectRoom(room));
+        container.appendChild(card);
+      });
+    }
+
+    async function selectRoom(room) {
+      selectedRoomId = room.id;
+      document.querySelectorAll('.room-card').forEach(c => c.classList.remove('selected'));
+      document.getElementById(`room-${room.id}`)?.classList.add('selected');
+
+      const checkIn = document.getElementById('check-in-date').value;
+      const checkOut = document.getElementById('check-out-date').value;
+      const guests = Number(document.getElementById('guest-count').value);
+
+      const quoteRes = await apiCall('quote', { roomId: room.id, checkIn, checkOut, guests });
+      if (quoteRes.ok) {
+        document.getElementById('summary-room-name').innerText = room.name_th || room.id;
+        document.getElementById('summary-nights').innerText = `${checkIn} ถึง ${checkOut} (${quoteRes.data.nights} คืน)`;
+        document.getElementById('summary-total-price').innerText = `฿${quoteRes.data.total_price.toLocaleString()}`;
+
+        document.getElementById('booking-section').style.display = 'block';
+        document.getElementById('booking-section').scrollIntoView({ behavior: 'smooth' });
+      } else {
+        alert('ห้องพักไม่ว่างในวันที่เลือก หรือเกิดข้อผิดพลาด');
+      }
+    }
+
+    document.getElementById('btn-submit-booking').addEventListener('click', async () => {
+      const name = document.getElementById('guest-name').value.trim();
+      const phone = document.getElementById('guest-phone').value.trim();
+      const email = document.getElementById('guest-email').value.trim();
+
+      if (!name || !phone || !email) {
+        alert('กรุณากรอกข้อมูลผู้จองให้ครบถ้วน');
+        return;
+      }
+
+      const payload = {
+        roomId: selectedRoomId,
+        checkIn: document.getElementById('check-in-date').value,
+        checkOut: document.getElementById('check-out-date').value,
+        guests: Number(document.getElementById('guest-count').value),
+        guest: { name, phone, email }
+      };
+
+      const res = await apiCall('createBooking', payload);
+      if (res.ok) {
+        currentBookingCode = res.data.booking_code;
+        showPaymentModal(res.data);
+      } else {
+        alert('ไม่สามารถสร้างการจองได้: ' + (res.error?.message || 'ห้องพักอาจถูกจองแล้ว'));
+      }
+    });
+
+    function showPaymentModal(data) {
+      const modal = document.getElementById('payment-modal');
+      document.getElementById('modal-amount').innerText = `฿${(data.amount_to_pay || data.total_price || 0).toLocaleString()}`;
+      if (data.qr_image_url) {
+        document.getElementById('qr-image').src = data.qr_image_url;
+      }
+      modal.classList.add('active');
+    }
+  </script>
+</body>
+</html>
